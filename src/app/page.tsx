@@ -1,101 +1,137 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlideTwo , setCurrentSlideTwo] = useState(0);
+  const slides = [
+    {
+      image: "/Developing-leaders.png",
+      text: "Developing Leaders"
+    },
+    {
+      image: "/Leading-Development.png",
+      text: "Leading Development"
+    }
+  ];
+  const slides2 = [
+    {
+      image: "/Leadership-mindset.png",
+      text: "Leadership Mindset"
+    },
+    {
+      image: "/Leadership-Vibes.jpg",
+      text: "Leadership Vibes"
+    }
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const nextslide = () => {
+    setCurrentSlideTwo((prev) => (prev + 1) % slides2.length);
+  };
+
+  const prevslide = () => {
+    setCurrentSlideTwo((prev) => (prev - 1 + slides2.length) % slides2.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(nextslide, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex flex-col min-h-screen bg-white text-black">
+      <nav className="w-full bg-[#D1B3FF] text-white py-4 px-6 shadow-md">
+        <div className="container mx-auto flex justify-between items-center">
+          <Link href="/" className="text-2xl font-bold cursor-pointer">
+            <Image src="/logo.png" alt="Zillionite Logo" width={130} height={70} className="inline-block" />
+          </Link>
+          <div className="flex space-x-6">
+            <Link href="#" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Zillionite</Link>
+            <Link href="#" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Lead</Link>
+            <Link href="/books" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Books</Link>
+            <Link href="#" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Connect</Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </nav>
+      
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6 flex flex-col md:flex-row items-center gap-8">
+        <div className="text-left w-full md:w-1/2">
+          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Hey, I am Shweta - Zillionite of Multiverses (:</h1>
+          <p className="mt-4 text-lg text-gray-600">
+            Gamed to Level Up Financial Leadership!<br></br>
+            Definitive Winning Strategies to build Wealth for YOU.<br></br>
+            So, what is your Leadership Challenge?
+          </p>
+          <input type="text" placeholder="Enter your Leadership Challenge" className="mt-4 px-4 py-2 w-full border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500 transition" />
+          <button className="mt-6 px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
+            Lead
+          </button>
+        </div>
+        <div className="w-full md:w-1/2 flex justify-center">
+          <Image src="/main.jpg" alt="Zillionite Preview" width={500} height={70} className="rounded-lg shadow-lg" />
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 text-center">
+        <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Business Leadership Books</h2>
+        <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
+          <button onClick={prevSlide} className="absolute -left-12 bg-gray-300 p-2 rounded-full">⬅</button>
+          <div className="w-full flex flex-row items-center gap-6">
+            <Image src={slides[currentSlide].image} alt="Book Image" width={500} height={500} className="rounded-lg shadow-lg" />
+            <div className="flex flex-col items-start gap-4">
+              <p className="text-3xl font-bold text-[#663399]">{slides[currentSlide].text}</p>
+              <button className="px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">Lead</button>
+            </div>
+          </div>
+          <button onClick={nextSlide} className="absolute -right-12 bg-gray-300 p-2 rounded-full">➡</button>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 mb-12 text-center">
+      <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Self Leadership Books</h2>
+        <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
+          <button onClick={prevslide} className="absolute -left-12 bg-gray-300 p-2 rounded-full">⬅</button>
+          <div className="w-full flex flex-row items-center gap-6">
+            <Image src={slides2[currentSlideTwo].image} alt="Book Image" width={500} height={500} className="rounded-lg shadow-lg" />
+            <div className="flex flex-col items-start gap-4">
+              <p className="text-3xl font-bold text-[#663399]">{slides2[currentSlideTwo].text}</p>
+              <button className="px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">Lead</button>
+            </div>
+          </div>
+          <button onClick={nextslide} className="absolute -right-12 bg-gray-300 p-2 rounded-full">➡</button>
+        </div>
+    </div>
+
+    <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6 flex flex-col md:flex-row items-center gap-8">
+        <div className="text-left w-full md:w-1/2">
+          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Thought Leadership - Finance Wisdom</h1>
+          <p className="mt-4 text-lg text-gray-600">
+          Design Wealth Map for each Financial Milestones<br></br>
+          Know how to create Wealth - Money, Vision, Time and Impact- All of it!
+          </p>
+          <button className="mt-6 px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
+            Lead
+          </button>
+        </div>
+        <div className="w-full md:w-1/2 flex justify-center">
+          <Image src="/Thought.png" alt="Thought Leadership" width={400} height={50} className="rounded-lg shadow-lg" />
+        </div>
+      </div>
     </div>
   );
 }
