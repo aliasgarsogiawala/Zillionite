@@ -3,9 +3,37 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentSlideTwo , setCurrentSlideTwo] = useState(0);
+  const[currentTestimonial, setCurrentTestimonial] = useState(0);
+  const testimonials = [
+    {
+      image: "/T1.png",
+    },
+    {
+      image: "/T2.png",
+    },
+    {
+      image: "/T3.png",
+    },
+    {
+      image: "/T4.png",
+    },
+    {
+      image: "/T5.png",
+    },
+    {
+      image: "/T6.png",
+    },
+    {
+      image: "/T7.png",
+    },
+    {
+      image: "/T8.png",
+    }
+  ]
   const slides = [
     {
       image: "/Developing-leaders.png",
@@ -43,6 +71,14 @@ export default function Home() {
     setCurrentSlideTwo((prev) => (prev - 1 + slides2.length) % slides2.length);
   };
 
+  const nexttest = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevtest = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
   useEffect(() => {
     const interval = setInterval(nextSlide, 4000);
     return () => clearInterval(interval);
@@ -50,6 +86,11 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(nextslide, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(nexttest, 4000);
     return () => clearInterval(interval);
   }, []);
 
@@ -129,9 +170,31 @@ export default function Home() {
           </button>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/Thought.png" alt="Thought Leadership" width={400} height={50} className="rounded-lg shadow-lg" />
+          <Image src="/Thought.png" alt="Thought Leadership" width={380} height={30} className="rounded-lg shadow-lg" />
         </div>
       </div>
+
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 text-center">
+      <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Client Diaries</h2>
+      <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center justify-center">
+        <button onClick={prevtest} className="absolute left-0 bg-gray-300 p-2 rounded-full">⬅</button>
+        <div className="w-full flex justify-center">
+          <Image src={testimonials[currentTestimonial].image} alt="Testimonial" width={400} height={500} className="rounded-lg shadow-lg" />
+        </div>
+        <button onClick={nexttest} className="absolute right-0 bg-gray-300 p-2 rounded-full">➡</button>
+      </div>
+      </div>
+
+      <footer className="w-full bg-gray-800 text-white py-4 mt-12">
+        <div className="container mx-auto text-center">
+          <p> Copyright © All rights reserved.</p>
+          <div className="flex justify-center space-x-4 mt-2">
+            <Link href="#" className="text-gray-400 hover:text-white">Privacy Policy</Link>
+            <Link href="#" className="text-gray-400 hover:text-white">Terms of Service</Link>
+            <Link href="#" className="text-gray-400 hover:text-white">Contact Us</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
