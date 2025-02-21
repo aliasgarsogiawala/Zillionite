@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
+import {FaYoutube , FaLinkedin , FaEnvelope} from "react-icons/fa";
 
 
 export default function Home() {
@@ -98,19 +98,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-black">
-      <nav className="w-full bg-[#D1B3FF] text-white py-4 px-6 shadow-md">
-        <div className="container mx-auto flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold cursor-pointer">
-            <Image src="/logo.png" alt="Zillionite Logo" width={130} height={70} className="inline-block" />
-          </Link>
-          <div className="flex space-x-6">
-            <Link href="/zillionite" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Zillionite</Link>
-            <Link href="#" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Lead</Link>
-            <Link href="/books" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Books</Link>
-            <Link href="#" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Connect</Link>
-          </div>
-        </div>
-      </nav>
       
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6 flex flex-col md:flex-row items-center gap-8">
         <div className="text-left w-full md:w-1/2">
@@ -172,15 +159,15 @@ export default function Home() {
           </button>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/Thought.png" alt="Thought Leadership" width={350} height={30} className="rounded-lg shadow-lg" />
+          <Image src="/pexels-crazy-motions-80195021-12198525.jpg" alt="Thought Leadership" width={350} height={30} className="rounded-lg shadow-lg" />
         </div>
       </div>
 
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Client Diaries</h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center justify-center">
-          <button onClick={prevtest} className="absolute left-0 bg-gray-300 p-2 rounded-full z-10 hover:bg-gray-400 transition">⬅</button>
-          <div className="relative flex items-center justify-center w-full h-[500px] overflow-hidden">
+          <button onClick={prevtest} className="absolute left-0 bg-gray-300 p-2 rounded-full z-10">⬅</button>
+          <div className="relative flex items-center justify-center w-full h-[500px] overflow-visible">
             {testimonials.map((testimonial, index) => {
               const position = (index - currentTestimonial + testimonials.length) % testimonials.length;
               let scale = 1;
@@ -211,25 +198,35 @@ export default function Home() {
                   transition={{ duration: 0.5 }}
                   className="absolute"
                 >
-                  <Image src={testimonial.image} alt={`Testimonial ${index}`} width={400} height={500} className="rounded-lg shadow-lg" />
+                  <Image
+                    src={testimonial.image}
+                    alt="Testimonial"
+                    width={400}
+                    height={500}
+                    className="rounded-lg bg-white p-4"
+                  />
                 </motion.div>
               );
             })}
           </div>
-          <button onClick={nexttest} className="absolute right-0 bg-gray-300 p-2 rounded-full z-10 hover:bg-gray-400 transition">➡</button>
+          <button onClick={nexttest} className="absolute right-0 bg-gray-300 p-2 rounded-full z-10">➡</button>
         </div>
       </div>
 
-      <footer className="w-full bg-gray-800 text-white py-4 mt-12">
-        <div className="container mx-auto text-center">
-          <p> Copyright © All rights reserved.</p>
-          <div className="flex justify-center space-x-4 mt-2">
-            <Link href="#" className="text-gray-400 hover:text-white">Privacy Policy</Link>
-            <Link href="#" className="text-gray-400 hover:text-white">Terms of Service</Link>
-            <Link href="#" className="text-gray-400 hover:text-white">Contact Us</Link>
-          </div>
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6 flex flex-col md:flex-row items-center gap-8">
+        <div className="text-left w-full md:w-1/2">
+          <h1 className="text-4xl lg:text-4xl font-bold text-[#663399]">Lead To Last</h1>
+          <p className="mt-4 text-lg text-gray-600">
+          Build Leadership Skills with Experiential Leadership          
+          </p>
+          <button className="mt-6 px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
+            Lead
+          </button>
         </div>
-      </footer>
+      </div>
+
+
+      
     </div>
   );
 }
