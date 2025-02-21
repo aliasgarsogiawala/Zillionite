@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+
 
 
 export default function Home() {
@@ -102,7 +104,7 @@ export default function Home() {
             <Image src="/logo.png" alt="Zillionite Logo" width={130} height={70} className="inline-block" />
           </Link>
           <div className="flex space-x-6">
-            <Link href="#" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Zillionite</Link>
+            <Link href="/zillionite" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Zillionite</Link>
             <Link href="#" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Lead</Link>
             <Link href="/books" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Books</Link>
             <Link href="#" className="bg-[#663399] text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#4B0082]">Connect</Link>
@@ -129,7 +131,7 @@ export default function Home() {
       </div>
 
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Business Leadership Books</h2>
+        <h2 className="text-3xl lg:text-4xl font-bold text-[#663399] text-left">Business Leadership Books</h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
           <button onClick={prevSlide} className="absolute -left-12 bg-gray-300 p-2 rounded-full">⬅</button>
           <div className="w-full flex flex-row items-center gap-6">
@@ -144,7 +146,7 @@ export default function Home() {
       </div>
 
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 mb-12 text-center">
-      <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Self Leadership Books</h2>
+      <h2 className="text-3xl lg:text-4xl font-bold text-[#663399] text-left">Self Leadership Books</h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
           <button onClick={prevslide} className="absolute -left-12 bg-gray-300 p-2 rounded-full">⬅</button>
           <div className="w-full flex flex-row items-center gap-6">
@@ -160,7 +162,7 @@ export default function Home() {
 
     <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6 flex flex-col md:flex-row items-center gap-8">
         <div className="text-left w-full md:w-1/2">
-          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Thought Leadership - Finance Wisdom</h1>
+          <h1 className="text-4xl lg:text-4xl font-bold text-[#663399]">Thought Leadership - Finance Wisdom</h1>
           <p className="mt-4 text-lg text-gray-600">
           Design Wealth Map for each Financial Milestones<br></br>
           Know how to create Wealth - Money, Vision, Time and Impact- All of it!
@@ -170,19 +172,52 @@ export default function Home() {
           </button>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/Thought.png" alt="Thought Leadership" width={380} height={30} className="rounded-lg shadow-lg" />
+          <Image src="/Thought.png" alt="Thought Leadership" width={350} height={30} className="rounded-lg shadow-lg" />
         </div>
       </div>
 
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 text-center">
-      <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Client Diaries</h2>
-      <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center justify-center">
-        <button onClick={prevtest} className="absolute left-0 bg-gray-300 p-2 rounded-full">⬅</button>
-        <div className="w-full flex justify-center">
-          <Image src={testimonials[currentTestimonial].image} alt="Testimonial" width={400} height={500} className="rounded-lg shadow-lg" />
+        <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Client Diaries</h2>
+        <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center justify-center">
+          <button onClick={prevtest} className="absolute left-0 bg-gray-300 p-2 rounded-full z-10 hover:bg-gray-400 transition">⬅</button>
+          <div className="relative flex items-center justify-center w-full h-[500px] overflow-hidden">
+            {testimonials.map((testimonial, index) => {
+              const position = (index - currentTestimonial + testimonials.length) % testimonials.length;
+              let scale = 1;
+              let opacity = 1;
+              let xOffset = 0;
+              let zIndex = 1;
+
+              if (position === 0) {
+                scale = 1.2;
+                opacity = 1;
+                xOffset = 0;
+                zIndex = 10;
+              } else if (position === 1 || position === testimonials.length - 1) {
+                scale = 1;
+                opacity = 0.6;
+                xOffset = position === 1 ? -150 : 150;
+                zIndex = 5;
+              } else {
+                opacity = 0;
+                zIndex = 1;
+              }
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity, scale, x: xOffset, zIndex }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute"
+                >
+                  <Image src={testimonial.image} alt={`Testimonial ${index}`} width={400} height={500} className="rounded-lg shadow-lg" />
+                </motion.div>
+              );
+            })}
+          </div>
+          <button onClick={nexttest} className="absolute right-0 bg-gray-300 p-2 rounded-full z-10 hover:bg-gray-400 transition">➡</button>
         </div>
-        <button onClick={nexttest} className="absolute right-0 bg-gray-300 p-2 rounded-full">➡</button>
-      </div>
       </div>
 
       <footer className="w-full bg-gray-800 text-white py-4 mt-12">
