@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {FaYoutube , FaLinkedin , FaEnvelope} from "react-icons/fa";
+import HeroSection from "@/components/HeroSection";
 
 
 export default function Home() {
@@ -99,6 +100,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white text-black">
       
+      <HeroSection/>
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6 flex flex-col md:flex-row items-center gap-8">
         <div className="text-left w-full md:w-1/2">
           <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Hey, I am Shweta - Zillionite of Multiverses (:</h1>
@@ -107,10 +109,10 @@ export default function Home() {
             Definitive Winning Strategies to build Wealth for YOU.<br></br>
             So, what is your Leadership Challenge?
           </p>
-          <input type="text" placeholder="Enter your Leadership Challenge" className="mt-4 px-4 py-2 w-full border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500 transition" />
-          <button className="mt-6 px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
+          <input type="text" placeholder="Enter your Leadership Challenge" className="mt-4 px-4 py-2 w-full border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500 transition" /><br></br>
+          <Link href="/shweta" className="mt-6 px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
             Lead
-          </button>
+          </Link>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
           <Image src="/main.jpg" alt="Zillionite Preview" width={500} height={70} className="rounded-lg shadow-lg" />

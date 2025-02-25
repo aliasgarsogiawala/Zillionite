@@ -19,3 +19,17 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Add these custom styles for the carousel */
+.slick-dots li button:before {
+    color: #663399 !important;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #663399 !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #663399 !important;
+}
