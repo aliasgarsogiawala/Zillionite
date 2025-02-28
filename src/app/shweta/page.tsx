@@ -5,6 +5,8 @@ import Image from 'next/image';
 
 export default function Shweta() {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
     
     const slides = [
         {
@@ -58,7 +60,14 @@ export default function Shweta() {
     const prevSlide = () => {
         setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     };
-
+    const handleSubmit = (e: React.MouseEvent) => {
+        if (!email) {
+            e.preventDefault();
+            setError('Please enter your email');
+            return;
+        }
+        setError('');
+    };
     return (
         <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6">
             <div className="flex flex-col items-center text-center mb-16">
@@ -162,14 +171,22 @@ export default function Shweta() {
                         
                             <input
                                 type="email"
+                                required
+                                value={email}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    setError('');
+                                }}
                                 placeholder="Enter your email"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                className={`w-full px-4 py-2 border ${error ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
                             />
+                            {error && <p className="text-red-500 text-sm">{error}</p>}
                         </div>
                         
                         <div className="pt-4">
                             <Link 
                                 href="/booking" 
+                                onClick={handleSubmit}
                                 className="inline-block px-8 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition-all duration-300 text-lg font-semibold"
                             >
                                 Lead

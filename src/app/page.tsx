@@ -35,26 +35,52 @@ export default function Home() {
     },
     {
       image: "/T8.png",
+    },
+    {
+      image: "/T9.png",
+    },
+    {
+      image: "/T10.png",
+    },
+    {
+      image: "/T11.png",
+    },
+    {
+      image: "/T12.png",
+    },
+    {
+      image: "/T13.png",
+    },
+    {
+      image: "/T14.png",
+    },
+    {
+      image: "/T15.png",
     }
   ]
   const slides = [
     {
       image: "/Developing-leaders.png",
-      text: "Developing Leaders"
+      text: "Developing Leaders",
+      link: "/developing-leaders"
     },
     {
       image: "/Leading-Development.png",
-      text: "Leading Development"
+      text: "Leading Development",
+      link: "/leading-development"
     }
   ];
+
   const slides2 = [
     {
       image: "/Leadership-mindset.png",
-      text: "Leadership Mindset"
+      text: "Leadership Mindset",
+      link: "/leadership-mindset"
     },
     {
       image: "/Leadership-Vibes.jpg",
-      text: "Leadership Vibes"
+      text: "Leadership Vibes",
+      link: "/leadership-vibes"
     }
   ];
 
@@ -101,71 +127,105 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-white text-black">
       
       <HeroSection/>
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6 flex flex-col md:flex-row items-center gap-8">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-4 flex flex-col md:flex-row items-center gap-8 bg-white py-12 rounded-lg shadow-sm">
         <div className="text-left w-full md:w-1/2">
-          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Hey, I am Shweta - Zillionite of Multiverses (:</h1>
+          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Hey, I am Shweta - Leading Zillionite till Zillionite</h1>
           <p className="mt-4 text-lg text-gray-600">
             Gamed to Level Up Financial Leadership!<br></br>
             Definitive Winning Strategies to build Wealth for YOU.<br></br>
             So, what is your Leadership Challenge?
           </p>
-          <input type="text" placeholder="Enter your Leadership Challenge" className="mt-4 px-4 py-2 w-full border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500 transition" /><br></br>
-          <Link href="/shweta" className="mt-6 px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
-            Lead
-          </Link>
+          <div className="space-y-4">
+            <input 
+              type="text" 
+              placeholder="Enter your Leadership Challenge" 
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500 transition" 
+            />
+            <div>
+              <Link href="/shweta" className="inline-block px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
+                Lead
+              </Link>
+            </div>
+          </div>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/main.jpg" alt="Zillionite Preview" width={500} height={70} className="rounded-lg shadow-lg" />
+          <Image src="/Shweta-Zillionite.jpeg" alt="Zillionite Preview" width={450} height={70} className="rounded-lg shadow-lg" />
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 text-center">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 text-center bg-gray-50 py-12 rounded-lg">
         <h2 className="text-3xl lg:text-4xl font-bold text-[#663399] text-left">Business Leadership Books</h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
           <button onClick={prevSlide} className="absolute -left-12 bg-gray-300 p-2 rounded-full">⬅</button>
           <div className="w-full flex flex-row items-center gap-6">
-            <Image src={slides[currentSlide].image} alt="Book Image" width={500} height={500} className="rounded-lg shadow-lg" />
+            <Link href={slides[currentSlide].link}>
+              <Image 
+                src={slides[currentSlide].image} 
+                alt="Book Image" 
+                width={500} 
+                height={500} 
+                className="rounded-lg shadow-lg cursor-pointer" 
+              />
+            </Link>
             <div className="flex flex-col items-start gap-4">
               <p className="text-3xl font-bold text-[#663399]">{slides[currentSlide].text}</p>
-              <button className="px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">Lead</button>
+              <Link 
+                href={slides[currentSlide].link} 
+                className="px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition"
+              >
+                Lead
+              </Link>
             </div>
           </div>
           <button onClick={nextSlide} className="absolute -right-12 bg-gray-300 p-2 rounded-full">➡</button>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 mb-12 text-center">
-      <h2 className="text-3xl lg:text-4xl font-bold text-[#663399] text-left">Self Leadership Books</h2>
+      {/* Self Leadership Books section */}
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 text-center bg-white py-12 rounded-lg shadow-sm">
+        <h2 className="text-3xl lg:text-4xl font-bold text-[#663399] text-left">Self Leadership Books</h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
           <button onClick={prevslide} className="absolute -left-12 bg-gray-300 p-2 rounded-full">⬅</button>
           <div className="w-full flex flex-row items-center gap-6">
-            <Image src={slides2[currentSlideTwo].image} alt="Book Image" width={500} height={500} className="rounded-lg shadow-lg" />
+            <Link href={slides2[currentSlideTwo].link}>
+              <Image 
+                src={slides2[currentSlideTwo].image} 
+                alt="Book Image" 
+                width={500} 
+                height={500} 
+                className="rounded-lg shadow-lg cursor-pointer" 
+              />
+            </Link>
             <div className="flex flex-col items-start gap-4">
               <p className="text-3xl font-bold text-[#663399]">{slides2[currentSlideTwo].text}</p>
-              <button className="px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">Lead</button>
+              <Link 
+                href={slides2[currentSlideTwo].link} 
+                className="px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition"
+              >
+                Lead
+              </Link>
             </div>
           </div>
           <button onClick={nextslide} className="absolute -right-12 bg-gray-300 p-2 rounded-full">➡</button>
         </div>
-    </div>
+      </div>
 
-    <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6 flex flex-col md:flex-row items-center gap-8">
+      {/* Thought Leadership section */}
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 flex flex-col md:flex-row items-center gap-8 bg-gray-50 py-12 rounded-lg">
         <div className="text-left w-full md:w-1/2">
-          <h1 className="text-4xl lg:text-4xl font-bold text-[#663399]">Thought Leadership - Finance Wisdom</h1>
+          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Thought Leadership - Finance Wisdom</h1>
           <p className="mt-4 text-lg text-gray-600">
-          Design Wealth Map for each Financial Milestones<br></br>
-          Know how to create Wealth - Money, Vision, Time and Impact- All of it!
+            Design Wealth Map for each Financial Milestones<br></br>
+            Know how to create Wealth - Money, Vision, Time and Impact- All of it!
           </p>
-          <button className="mt-6 px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
-            Lead
-          </button>
+          <Link href="/thought-leadership" className="mt-6 px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">Lead</Link>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
           <Image src="/pexels-crazy-motions-80195021-12198525.jpg" alt="Thought Leadership" width={350} height={30} className="rounded-lg shadow-lg" />
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 text-center">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 mb-16 text-center bg-white py-12 rounded-lg shadow-sm">
         <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Client Diaries</h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center justify-center">
           <button onClick={prevtest} className="absolute left-0 bg-gray-300 p-2 rounded-full z-10">⬅</button>
@@ -215,15 +275,22 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6 flex flex-col md:flex-row items-center gap-8">
-        <div className="text-left w-full md:w-1/2">
-          <h1 className="text-4xl lg:text-4xl font-bold text-[#663399]">Lead To Last</h1>
-          <p className="mt-4 text-lg text-gray-600">
-          Build Leadership Skills with Experiential Leadership          
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 flex flex-col md:flex-row items-center gap-8 bg-gray-50 py-12 rounded-lg">
+        <div className="text-left w-full md:w-1/2 space-y-6">
+          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Lead To Last</h1>
+          <p className="text-lg text-gray-600">
+            Build Leadership Skills with Experiential Leadership<br />
+            Learn with Fun with experience and Impact
           </p>
-          <button className="mt-6 px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
-            Lead
-          </button>
+          
+          <div className="pt-4">
+            <Link href="/shweta" className="inline-block px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
+              Lead
+            </Link>
+          </div>
+        </div>
+        <div className="w-full md:w-1/2 flex justify-center">
+          <Image src="/leadtolast.png" alt="Zillionite Preview" width={400} height={70} className="rounded-lg shadow-lg" />
         </div>
       </div>
 

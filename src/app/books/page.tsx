@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import  Link  from 'next/link';
 
 export default function Books() {
     const books = [
@@ -68,9 +69,9 @@ export default function Books() {
                                     <p className="text-gray-700">
                                         {book.description}
                                     </p>
-                                    <button className="mt-4 px-6 py-2 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition-all duration-300 text-sm font-semibold">
+                                    <Link href="developing-leaders" className="mt-4 px-6 py-2 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition-all duration-300 text-sm font-semibold">
                                         Learn More
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         ))}

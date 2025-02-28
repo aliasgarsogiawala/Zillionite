@@ -5,10 +5,9 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <section className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#D1B3FF] to-[#663399] text-white">
-      {/* Background Image with Blur */}
       <div className="absolute inset-0">
         <Image
-          src="/HeroSection.jpg" // ✅ Replace with your actual hero background image
+          src="/HeroSection.jpg"
           alt="Background"
           layout="fill"
           objectFit="cover"

@@ -16,8 +16,8 @@ export default function Booking() {
         setDate(new Date());
     }, []);
 
-    const handleDateChange = (selectedDate: Date) => {
-        setDate(selectedDate);
+    const handleDateChange = (selectedDate: Date | Date[]) => {
+        setDate(selectedDate as Date);
         setTimeSlot('');
     };
 
