@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-export default function thoughtleadership() {
+export default function ThoughtLeadership() {  
     const [email, setEmail] = useState('');
 
     return (

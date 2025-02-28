@@ -1,9 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect , useCallback} from "react";
 import { motion } from "framer-motion";
-import {FaYoutube , FaLinkedin , FaEnvelope} from "react-icons/fa";
 import HeroSection from "@/components/HeroSection";
 
 
