@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-export default function connect() {
+export default function Connect() {  
   const [formData, setFormData] = useState({
     name: '',
     phone: '',

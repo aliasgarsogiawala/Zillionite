@@ -46,7 +46,7 @@ export default function DevelopingLeaders() {
               transition={{ delay: 1 }}
               className="mt-8 space-y-4 bg-purple-50/50 p-6 rounded-xl">
               <p className="italic text-lg font-medium text-gray-800">If you are struggling with these Lingering Questions to build the biz of your dreams.</p>
-              <p className="font-bold text-xl text-purple-700">"Developing Leaders" is the Strategic Force for your business</p>
+              <p className="font-bold text-xl text-purple-700">&ldquo;Developing Leaders&redquo; is the Strategic Force for your business</p>
             </motion.div>
 
             <motion.div
