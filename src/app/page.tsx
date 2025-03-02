@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import HeroSection from "@/components/HeroSection";
 
-
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentSlideTwo , setCurrentSlideTwo] = useState(0);
@@ -118,7 +117,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(nexttest, 4000);
+    const interval = setInterval(nexttest, 7000);
     return () => clearInterval(interval);
   }, []);
 
@@ -180,7 +179,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Self Leadership Books section */}
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 text-center bg-white py-12 rounded-lg shadow-sm">
         <h2 className="text-3xl lg:text-4xl font-bold text-[#663399] text-left">Self Leadership Books</h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
@@ -209,7 +207,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Thought Leadership section */}
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 flex flex-col md:flex-row items-center gap-8 bg-gray-50 py-12 rounded-lg">
         <div className="text-left w-full md:w-1/2">
           <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Thought Leadership - Finance Wisdom</h1>
@@ -224,10 +221,10 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 mb-16 text-center bg-white py-12 rounded-lg shadow-sm">
-        <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Client Diaries</h2>
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 mb-16 text-center py-12 rounded-lg">
+        <h2 className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-600 mb-8">Client Diaries</h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center justify-center">
-          <button onClick={prevtest} className="absolute left-0 bg-gray-300 p-2 rounded-full z-10">⬅</button>
+          <button onClick={prevtest} className="absolute left-0 bg-white p-3 rounded-full z-10 shadow-md hover:shadow-lg text-purple-600 transition-all">⬅</button>
           <div className="relative flex items-center justify-center w-full h-[500px] overflow-visible">
             {testimonials.map((testimonial, index) => {
               const position = (index - currentTestimonial + testimonials.length) % testimonials.length;
@@ -235,7 +232,7 @@ export default function Home() {
               let opacity = 1;
               let xOffset = 0;
               let zIndex = 1;
-
+      
               if (position === 0) {
                 scale = 1.2;
                 opacity = 1;
@@ -250,7 +247,7 @@ export default function Home() {
                 opacity = 0;
                 zIndex = 1;
               }
-
+      
               return (
                 <motion.div
                   key={index}
@@ -259,20 +256,25 @@ export default function Home() {
                   transition={{ duration: 0.5 }}
                   className="absolute"
                 >
-                  <Image
-                    src={testimonial.image}
-                    alt="Testimonial"
-                    width={400}
-                    height={500}
-                    className="rounded-lg bg-white p-4"
-                  />
+                  <div className="bg-gradient-to-br from-purple-50 to-white rounded-xl shadow-xl p-4 border-2 border-purple-100">
+                    <Image
+                      src={testimonial.image}
+                      alt="Testimonial"
+                      width={400}
+                      height={500}
+                      className="rounded-lg"
+                    />
+                  </div>
                 </motion.div>
               );
             })}
           </div>
-          <button onClick={nexttest} className="absolute right-0 bg-gray-300 p-2 rounded-full z-10">➡</button>
+          <button onClick={nexttest} className="absolute right-0 bg-white p-3 rounded-full z-10 shadow-md hover:shadow-lg text-purple-600 transition-all">➡</button>
         </div>
       </div>
+
+      
+      
 
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 flex flex-col md:flex-row items-center gap-8 bg-gray-50 py-12 rounded-lg">
         <div className="text-left w-full md:w-1/2 space-y-6">
