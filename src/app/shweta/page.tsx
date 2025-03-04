@@ -80,14 +80,7 @@ export default function Shweta() {
             Definitive Winning Strategies to build Wealth for YOU.<br></br>
             So, what is your Leadership Challenge?
           </p>
-          <div className="space-y-4">
-            <input 
-              type="text" 
-              placeholder="Enter your Leadership Challenge" 
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500 transition" 
-            />
-            
-          </div>
+         
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
           <Image src="/Shweta-Zillionite.jpeg" alt="Zillionite Preview" width={450} height={70} className="rounded-lg shadow-lg" />
