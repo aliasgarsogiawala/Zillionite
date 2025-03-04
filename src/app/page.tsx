@@ -126,81 +126,77 @@ export default function Home() {
       
       <HeroSection/>
       
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 text-center bg-gray-50 py-12 rounded-lg border-none">
-        <h2 className="text-3xl lg:text-4xl font-bold text-[#663399] text-left">Business Leadership Books</h2>
-        <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
-          <button onClick={prevSlide} className="absolute -left-12 bg-gray-300 p-2 rounded-full">⬅</button>
-          <div className="w-full flex flex-row items-center gap-6">
-            <Link href={slides[currentSlide].link}>
+      <div className="container mx-auto px-4 md:px-12 lg:px-16 mt-4 md:mt-8 text-center bg-gray-50 py-8 md:py-12 rounded-lg border-none">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#663399] text-left">Business Leadership Books</h2>
+        <div className="relative w-full max-w-4xl mx-auto mt-4 md:mt-6 flex items-center">
+          <div className="w-full flex flex-col md:flex-row items-center md:items-start gap-6">
+            <Link href={slides[currentSlide].link} className="w-full md:w-auto">
               <Image 
                 src={slides[currentSlide].image} 
                 alt="Book Image" 
                 width={500} 
                 height={500} 
-                className="rounded-lg shadow-lg cursor-pointer border-none" 
+                className="rounded-lg shadow-lg cursor-pointer border-none w-full max-w-[300px] mx-auto md:max-w-none" 
               />
             </Link>
-            <div className="flex flex-col items-start gap-4">
-              <p className="text-3xl font-bold text-[#663399]">{slides[currentSlide].text}</p>
+            <div className="flex flex-col items-center md:items-start gap-4 mt-4 md:mt-0">
+              <p className="text-2xl md:text-3xl font-bold text-[#663399]">{slides[currentSlide].text}</p>
               <Link 
                 href={slides[currentSlide].link} 
-                className="px-8 py-4 bg-[#663399] text-white text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition"
+                className="px-6 md:px-8 py-3 md:py-4 bg-[#663399] text-white text-lg md:text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition w-full md:w-auto text-center"
               >
                 Lead
               </Link>
             </div>
           </div>
-          <button onClick={nextSlide} className="absolute -right-12 bg-gray-300 p-2 rounded-full">➡</button>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 text-center bg-white py-12 rounded-lg shadow-sm">
-        <h2 className="text-3xl lg:text-4xl font-bold text-[#663399] text-left">Self Leadership Books</h2>
-        <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
-          <button onClick={prevslide} className="absolute -left-12 bg-gray-300 p-2 rounded-full">⬅</button>
-          <div className="w-full flex flex-row items-center gap-6">
-            <Link href={slides2[currentSlideTwo].link}>
+      <div className="container mx-auto px-4 md:px-12 lg:px-16 mt-4 md:mt-8 text-center bg-white py-8 md:py-12 rounded-lg shadow-sm">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#663399] text-left">Self Leadership Books</h2>
+        <div className="relative w-full max-w-4xl mx-auto mt-4 md:mt-6 flex items-center">
+          <div className="w-full flex flex-col md:flex-row items-center md:items-start gap-6">
+            <Link href={slides2[currentSlideTwo].link} className="w-full md:w-auto">
               <Image 
                 src={slides2[currentSlideTwo].image} 
                 alt="Book Image" 
                 width={500} 
                 height={500} 
-                className="rounded-lg shadow-lg cursor-pointer" 
+                className="rounded-lg shadow-lg cursor-pointer w-full max-w-[300px] mx-auto md:max-w-none" 
               />
             </Link>
-            <div className="flex flex-col items-start gap-4">
-              <p className="text-3xl font-bold text-[#663399]">{slides2[currentSlideTwo].text}</p>
+            <div className="flex flex-col items-center md:items-start gap-4 mt-4 md:mt-0">
+              <p className="text-2xl md:text-3xl font-bold text-[#663399]">{slides2[currentSlideTwo].text}</p>
               <Link 
                 href={slides2[currentSlideTwo].link} 
-                className="px-8 py-4 bg-[#663399] text-white text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition"
+                className="px-6 md:px-8 py-3 md:py-4 bg-[#663399] text-white text-lg md:text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition w-full md:w-auto text-center"
               >
                 Lead
               </Link>
             </div>
           </div>
-          <button onClick={nextslide} className="absolute -right-12 bg-gray-300 p-2 rounded-full">➡</button>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 flex flex-col md:flex-row items-center gap-8 bg-gray-50 py-12 rounded-lg">
-        <div className="text-left w-full md:w-1/2">
-          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Thought Leadership - Finance Wisdom</h1>
-          <p className="mt-4 text-lg text-gray-600">
+      <div className="container mx-auto px-4 md:px-12 lg:px-16 mt-4 md:mt-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 bg-gray-50 py-8 md:py-12 rounded-lg">
+        <div className="text-center md:text-left w-full md:w-1/2">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#663399]">Thought Leadership - Finance Wisdom</h1>
+          <p className="mt-3 md:mt-4 text-base md:text-lg text-gray-600">
             Design Wealth Map for each Financial Milestones<br></br>
             Know how to create Wealth - Money, Vision, Time and Impact- All of it!
           </p>
-          <Link href="/thought-leadership" className="mt-6 inline-block px-8 py-4 bg-[#663399] text-white text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition">Lead</Link>
+          <Link href="/thought-leadership" className="mt-4 md:mt-6 inline-block px-6 md:px-8 py-3 md:py-4 bg-[#663399] text-white text-lg md:text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition">Lead</Link>
         </div>
-        <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/pexels-crazy-motions-80195021-12198525.jpg" alt="Thought Leadership" width={350} height={30} className="rounded-lg shadow-lg" />
+        <div className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0">
+          <Image src="/pexels-crazy-motions-80195021-12198525.jpg" alt="Thought Leadership" width={350} height={30} className="rounded-lg shadow-lg max-w-[300px] md:max-w-[350px] w-full" />
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 mb-16 text-center py-12 rounded-lg">
-        <h2 className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-600 mb-8">Client Diaries</h2>
-        <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center justify-center">
-          <button onClick={prevtest} className="absolute left-0 bg-white p-3 rounded-full z-10 shadow-md hover:shadow-lg text-purple-600 transition-all">⬅</button>
-          <div className="relative flex items-center justify-center w-full h-[500px] overflow-visible">
+      <div className="container mx-auto px-4 md:px-12 lg:px-16 mt-4 md:mt-8 mb-8 md:mb-16 text-center py-8 md:py-12 rounded-lg">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-600 mb-4 md:mb-8">Client Diaries</h2>
+        <div className="relative w-full max-w-4xl mx-auto mt-4 md:mt-6 flex items-center justify-center">
+          <button onClick={prevtest} className="absolute left-0 bg-white p-2 md:p-3 rounded-full z-10 shadow-md hover:shadow-lg text-purple-600 transition-all">⬅</button>
+          <div className="relative flex items-center justify-center w-full h-[350px] md:h-[500px] overflow-visible">
             {testimonials.map((testimonial, index) => {
               const position = (index - currentTestimonial + testimonials.length) % testimonials.length;
               let scale = 1;
@@ -244,56 +240,10 @@ export default function Home() {
               );
             })}
           </div>
-          <button onClick={nexttest} className="absolute right-0 bg-white p-3 rounded-full z-10 shadow-md hover:shadow-lg text-purple-600 transition-all">➡</button>
+          <button onClick={nexttest} className="absolute right-0 bg-white p-2 md:p-3 rounded-full z-10 shadow-md hover:shadow-lg text-purple-600 transition-all">➡</button>
         </div>
       </div>
 
-      
-      
-
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 flex flex-col md:flex-row items-center gap-8 bg-gray-50 py-12 rounded-lg">
-        <div className="text-left w-full md:w-1/2 space-y-6">
-          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Lead To Last</h1>
-          <p className="text-lg text-gray-600">
-            Build Leadership Skills with Experiential Leadership<br />
-            Learn with Fun with experience and Impact
-          </p>
-          
-          <div className="pt-4">
-            <Link href="/leadtolast" className="inline-block px-8 py-4 bg-[#663399] text-white text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition">
-              Lead
-            </Link>
-          </div>
-        </div>
-        <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/leadtolast.png" alt="Zillionite Preview" width={400} height={70} className="rounded-lg shadow-lg" />
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 flex flex-col md:flex-row items-center gap-8 bg-gray-50 py-12 rounded-lg">
-        <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/ztz.jpg" alt="Zillionite Preview" width={400} height={70} className="rounded-lg shadow-lg" />
-        </div>
-        
-        <div className="text-left w-full md:w-1/2 space-y-6">
-          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Connect With Us</h1>
-          <div className="grid grid-cols-1 gap-3 bg-white p-5 rounded-lg shadow-sm">
-            <p className="text-purple-700 font-semibold text-lg hover:text-purple-900 transition-colors">For cool careers</p>
-            <p className="text-purple-700 font-semibold text-lg hover:text-purple-900 transition-colors">To unlock growth</p>
-            <p className="text-purple-700 font-semibold text-lg hover:text-purple-900 transition-colors">Lean in business collaborations</p>
-            <p className="text-purple-700 font-semibold text-lg hover:text-purple-900 transition-colors">To go places with Key Note Speaker Shweta</p>
-            <p className="text-purple-700 font-semibold text-lg hover:text-purple-900 transition-colors">For Leading with Zillionite</p>
-            <p className="text-purple-700 font-semibold text-lg hover:text-purple-900 transition-colors">If you want Organisation Development</p>
-            <p className="text-purple-700 font-semibold text-lg hover:text-purple-900 transition-colors">So Immersive Learning takes place</p>
-          </div>
-          
-          <div className="pt-4">
-            <Link href="/connect" className="inline-block px-8 py-4 bg-[#663399] text-white text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition">
-              Lead
-            </Link>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
