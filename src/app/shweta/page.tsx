@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Shweta() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -70,59 +71,100 @@ export default function Shweta() {
     };
     return (
         <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6">
-            <div className="flex flex-col items-center text-center mb-16">
+
+<div className="container mx-auto px-6 md:px-12 lg:px-16 mt-4 flex flex-col md:flex-row items-center gap-8 bg-white py-12 rounded-lg shadow-sm">
+        <div className="text-left w-full md:w-1/2">
+          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Hey, I am Shweta - Leading Zillionite till Zillionite</h1>
+          <p className="mt-4 text-lg text-gray-600">
+            Gamed to Level Up Financial Leadership!<br></br>
+            Definitive Winning Strategies to build Wealth for YOU.<br></br>
+            So, what is your Leadership Challenge?
+          </p>
+          <div className="space-y-4">
+            <input 
+              type="text" 
+              placeholder="Enter your Leadership Challenge" 
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500 transition" 
+            />
+            
+          </div>
+        </div>
+        <div className="w-full md:w-1/2 flex justify-center">
+          <Image src="/Shweta-Zillionite.jpeg" alt="Zillionite Preview" width={450} height={70} className="rounded-lg shadow-lg" />
+        </div>
+      </div>
+
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="flex flex-col items-center text-center mb-16"
+            >
                 <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">
                     Zillion Dollar Answer to Your Leadership Challenge….
                 </h1>
                 <p className="mt-4 text-lg text-gray-600">
                     Crack the Code of Experiential Leadership with Shweta!
                 </p>
-            </div>
+            </motion.div>
 
             <div className="max-w-4xl mx-auto relative">
                 <div className="relative aspect-[16/9] overflow-hidden rounded-lg shadow-xl">
-                    {slides.map((slide, index) => (
-                        <div
-                            key={index}
-                            className={`absolute w-full h-full transition-opacity duration-500 ease-in-out ${
-                                index === currentSlide ? 'opacity-100' : 'opacity-0'
-                            }`}
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={currentSlide}
+                            initial={{ opacity: 0, scale: 1.1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            transition={{ duration: 0.7 }}
+                            className="absolute w-full h-full"
                         >
                             <img
-                                src={slide.image}
-                                alt={slide.title}
+                                src={slides[currentSlide].image}
+                                alt={slides[currentSlide].title}
                                 className="w-full h-full object-cover"
                             />
-                            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-6">
-                                <h2 className="text-2xl font-bold mb-2 font-bold">
-                                    {slide.title}
+                            <motion.div 
+                                initial={{ y: 50, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.3, duration: 0.5 }}
+                                className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-6 backdrop-blur-sm"
+                            >
+                                <h2 className="text-2xl font-bold mb-2">
+                                    {slides[currentSlide].title}
                                 </h2>
                                 <p className="text-lg">
-                                    {slide.text}
+                                    {slides[currentSlide].text}
                                 </p>
-                            </div>
-                        </div>
-                    ))}
+                            </motion.div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
                 
-                <button
+                <motion.button
+                    whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 1)" }}
+                    whileTap={{ scale: 0.9 }}
                     onClick={prevSlide}
                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-purple-600 p-2 rounded-full shadow-lg"
                 >
                     ←
-                </button>
-                <button
+                </motion.button>
+                <motion.button
+                    whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 1)" }}
+                    whileTap={{ scale: 0.9 }}
                     onClick={nextSlide}
                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-purple-600 p-2 rounded-full shadow-lg"
                 >
                     →
-                </button>
+                </motion.button>
 
                 <div className="flex justify-center mt-4 gap-2">
                     {slides.map((_, index) => (
-                        <button
+                        <motion.button
                             key={index}
                             onClick={() => setCurrentSlide(index)}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.8 }}
                             className={`w-3 h-3 rounded-full ${
                                 index === currentSlide ? 'bg-purple-600' : 'bg-gray-300'
                             }`}

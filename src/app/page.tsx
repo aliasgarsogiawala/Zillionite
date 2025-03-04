@@ -125,33 +125,8 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-white text-black">
       
       <HeroSection/>
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-4 flex flex-col md:flex-row items-center gap-8 bg-white py-12 rounded-lg shadow-sm">
-        <div className="text-left w-full md:w-1/2">
-          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Hey, I am Shweta - Leading Zillionite till Zillionite</h1>
-          <p className="mt-4 text-lg text-gray-600">
-            Gamed to Level Up Financial Leadership!<br></br>
-            Definitive Winning Strategies to build Wealth for YOU.<br></br>
-            So, what is your Leadership Challenge?
-          </p>
-          <div className="space-y-4">
-            <input 
-              type="text" 
-              placeholder="Enter your Leadership Challenge" 
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500 transition" 
-            />
-            <div>
-              <Link href="/shweta" className="inline-block px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
-                Lead
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/Shweta-Zillionite.jpeg" alt="Zillionite Preview" width={450} height={70} className="rounded-lg shadow-lg" />
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 text-center bg-gray-50 py-12 rounded-lg">
+      
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 text-center bg-gray-50 py-12 rounded-lg border-none">
         <h2 className="text-3xl lg:text-4xl font-bold text-[#663399] text-left">Business Leadership Books</h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
           <button onClick={prevSlide} className="absolute -left-12 bg-gray-300 p-2 rounded-full">⬅</button>
@@ -162,14 +137,14 @@ export default function Home() {
                 alt="Book Image" 
                 width={500} 
                 height={500} 
-                className="rounded-lg shadow-lg cursor-pointer" 
+                className="rounded-lg shadow-lg cursor-pointer border-none" 
               />
             </Link>
             <div className="flex flex-col items-start gap-4">
               <p className="text-3xl font-bold text-[#663399]">{slides[currentSlide].text}</p>
               <Link 
                 href={slides[currentSlide].link} 
-                className="px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition"
+                className="px-8 py-4 bg-[#663399] text-white text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition"
               >
                 Lead
               </Link>
@@ -197,7 +172,7 @@ export default function Home() {
               <p className="text-3xl font-bold text-[#663399]">{slides2[currentSlideTwo].text}</p>
               <Link 
                 href={slides2[currentSlideTwo].link} 
-                className="px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition"
+                className="px-8 py-4 bg-[#663399] text-white text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition"
               >
                 Lead
               </Link>
@@ -214,7 +189,7 @@ export default function Home() {
             Design Wealth Map for each Financial Milestones<br></br>
             Know how to create Wealth - Money, Vision, Time and Impact- All of it!
           </p>
-          <Link href="/thought-leadership" className="mt-6 px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">Lead</Link>
+          <Link href="/thought-leadership" className="mt-6 inline-block px-8 py-4 bg-[#663399] text-white text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition">Lead</Link>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
           <Image src="/pexels-crazy-motions-80195021-12198525.jpg" alt="Thought Leadership" width={350} height={30} className="rounded-lg shadow-lg" />
@@ -285,7 +260,7 @@ export default function Home() {
           </p>
           
           <div className="pt-4">
-            <Link href="/leadtolast" className="inline-block px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
+            <Link href="/leadtolast" className="inline-block px-8 py-4 bg-[#663399] text-white text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition">
               Lead
             </Link>
           </div>
@@ -296,6 +271,10 @@ export default function Home() {
       </div>
 
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-8 flex flex-col md:flex-row items-center gap-8 bg-gray-50 py-12 rounded-lg">
+        <div className="w-full md:w-1/2 flex justify-center">
+          <Image src="/ztz.jpg" alt="Zillionite Preview" width={400} height={70} className="rounded-lg shadow-lg" />
+        </div>
+        
         <div className="text-left w-full md:w-1/2 space-y-6">
           <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Connect With Us</h1>
           <div className="grid grid-cols-1 gap-3 bg-white p-5 rounded-lg shadow-sm">
@@ -309,18 +288,12 @@ export default function Home() {
           </div>
           
           <div className="pt-4">
-            <Link href="/connect" className="inline-block px-6 py-3 bg-[#663399] text-white rounded-lg shadow-lg hover:bg-purple-700 transition">
+            <Link href="/connect" className="inline-block px-8 py-4 bg-[#663399] text-white text-xl font-bold rounded-lg shadow-lg hover:bg-purple-700 transition">
               Lead
             </Link>
           </div>
         </div>
-        <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/ztz.jpg" alt="Zillionite Preview" width={400} height={70} className="rounded-lg shadow-lg" />
-        </div>
       </div>
-
-
-      
     </div>
   );
 }
