@@ -86,25 +86,19 @@ export default function Home() {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
+  
 
   const nextslide = () => {
     setCurrentSlideTwo((prev) => (prev + 1) % slides2.length);
   };
 
-  const prevslide = () => {
-    setCurrentSlideTwo((prev) => (prev - 1 + slides2.length) % slides2.length);
-  };
+  
 
   const nexttest = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
 
-  const prevtest = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  
 
   useEffect(() => {
     const interval = setInterval(nextSlide, 4000);

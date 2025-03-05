@@ -91,11 +91,10 @@ export default function Connect() {
             </h1>
             <p className="text-gray-600 mb-8 text-lg">
               Ready to unlock Wealth?<br />
-              Let's Connect and Transform Your Leadership Journey
+              Let&apos;s Connect and Transform Your Leadership Journey
             </p>
           </motion.div>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {["name", "phone", "email", "entity"].map((field) => (
               <div key={field} className="group">

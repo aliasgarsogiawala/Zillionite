@@ -119,7 +119,7 @@ export default function Zillionite(){
                     
                     <div className="bg-purple-50 p-6 rounded-xl border-2 border-purple-200 my-8 transform hover:scale-105 transition-transform duration-300">
                       <p className="text-2xl font-bold text-[#663399] text-center italic">
-                        "Higher your Learning curve, Bigger your Earning curve."
+                        &ldquo;Higher your Learning curve, Bigger your Earning curve.&rdquo;
                       </p>
                     </div>
                     

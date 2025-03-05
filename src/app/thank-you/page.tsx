@@ -37,7 +37,7 @@ export default function ThankYou() {
           transition={{ delay: 0.7, duration: 0.5 }}
           className="text-gray-600 text-lg mb-8"
         >
-          We've received your information and will be in touch soon. We're excited to embark on this leadership journey with you!
+          We&apos;ve received your information and will be in touch soon. We&apos;re excited to embark on this leadership journey with you!
         </motion.p>
         
         <motion.div

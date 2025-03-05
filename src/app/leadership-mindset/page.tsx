@@ -3,23 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function LeadershipMindset() {
-  const points = [
-    "The universe expands and collapses",
-    "Wealth collapses and expands and so on...",
-    "The stock market collapses and expands",
-    "Life collapses, collapses and yeah, expands",
-    "The universe expands and collapses",
-    "Yet, the universe Leads!",
-    "So will you...LEAD in your LIFE!",
-    "Despite the collapse and expansion!",
-    "Universal Laws are Universal!",
-    "Tune into the Rhythm Divine of Universe. BUILD \"Leadership Mindset\"",
-    "Leadership Mindset: Deep Dive",
-    "Winning Life - Daily",
-    "Types of Mindset",
-    "Instinct over Intellect",
-    "Rebuild your Super Power"
-  ];
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-purple-50 py-12">
@@ -61,7 +45,7 @@ export default function LeadershipMindset() {
               </div>
               
               <div>
-                <p className="text-[#663399] font-semibold text-lg">Tune into the Rhythm Divine of Universe. BUILD "Leadership Mindset"</p>
+                <p className="text-[#663399] font-semibold text-lg">Tune into the Rhythm Divine of Universe. BUILD &ldquo;Leadership Mindset&rdquo;</p>
               </div>
               
               <div>

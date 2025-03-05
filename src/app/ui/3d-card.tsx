@@ -5,9 +5,9 @@ import React, {
   useState,
   useContext,
   useRef,
-  useEffect,
+  
 } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue,  } from "framer-motion";
 
 const MouseEnterContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
