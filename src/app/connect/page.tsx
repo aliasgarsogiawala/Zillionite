@@ -5,26 +5,41 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 
+interface FloatingLogo {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  duration: number;
+  delay: number;
+}
+
 export default function Connect() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
+  // Define a type for the form data
+  interface FormData {
+    name: string;
+    phone: string;
+    email: string;
+    entity: string;
+    notes: string;
+    [key: string]: string; 
+  }
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
     email: "",
     entity: "",
     notes: "",
   });
-
-  // Floating Logos Effect
-  const [floatingLogos, setFloatingLogos] = useState<
-    Array<{ id: number; x: number; y: number; size: number; duration: number; delay: number }>
-  >([]);
-
+  
+  const [floatingLogos, setFloatingLogos] = useState<FloatingLogo[]>([]);
+  
   useEffect(() => {
-    const logos = [];
+    const logos: FloatingLogo[] = [];
     for (let i = 0; i < 15; i++) {
       logos.push({
-        id: i,
+        id: i, 
         x: Math.random() * 100,
         y: Math.random() * 100,
         size: Math.random() * 50 + 20, // 20px - 40px
@@ -34,24 +49,23 @@ export default function Connect() {
     }
     setFloatingLogos(logos);
   }, []);
-
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
     router.push('/thank-you');
   };
-
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white py-12 relative overflow-hidden">
-      {/* Floating Logos Animation */}
-      {floatingLogos.map((logo) => (
+      {/* Floating Logos Animation - Only render when logos are available */}
+      {floatingLogos.length > 0 && floatingLogos.map((logo) => (
         <motion.div
           key={logo.id}
           className="absolute opacity-10 pointer-events-none"
@@ -95,6 +109,7 @@ export default function Connect() {
             </p>
           </motion.div>
 
+          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {["name", "phone", "email", "entity"].map((field) => (
               <div key={field} className="group">
@@ -106,7 +121,7 @@ export default function Connect() {
                   id={field}
                   name={field}
                   required
-                  value={formData[field as keyof typeof formData]}
+                  value={formData[field]}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 shadow-sm hover:shadow-md"
                   placeholder={`Your ${field}`}

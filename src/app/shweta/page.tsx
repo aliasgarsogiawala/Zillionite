@@ -113,8 +113,11 @@ export default function Shweta() {
                             className="absolute w-full h-full"
                         >
                             <Image
+                            
                                 src={slides[currentSlide].image}
                                 alt={slides[currentSlide].title}
+                                width={500}
+                                height={500}
                                 className="w-full h-full object-cover"
                             />
                             <motion.div 
