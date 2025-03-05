@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 
-export const dynamic = "force-dynamic"; // Ensures Next.js renders this page dynamically
+export const dynamic = "force-dynamic"; 
 
 export default function Books() {
   const [isClient, setIsClient] = useState(false);

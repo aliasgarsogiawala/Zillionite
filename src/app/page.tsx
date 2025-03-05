@@ -180,7 +180,7 @@ export default function Home() {
             Know how to create Wealth - Money, Vision, Time and Impact- All of it!
           </p>
           <div className="pt-6">
-            <Link href="/thought-leadership" className="inline-block px-10 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white text-xl font-bold rounded-xl shadow-xl hover:shadow-purple-300/50 transition-all duration-300 transform hover:translate-y-[-2px]">Lead</Link>
+            <Link href="/thoughtleadership" className="inline-block px-10 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white text-xl font-bold rounded-xl shadow-xl hover:shadow-purple-300/50 transition-all duration-300 transform hover:translate-y-[-2px]">Lead</Link>
           </div>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
