@@ -1,26 +1,40 @@
-import Link from 'next/link';
-import Image from 'next/image';
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+
+export const dynamic = "force-dynamic"; // Ensures Next.js renders this page dynamically
 
 export default function NotFound() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-2xl border-t-4 border-[#663399] text-center">
-        <div className="mb-6">
-          <Image 
-            src="/Circular-Logo.png" 
-            alt="Zillionite Logo" 
-            width={80} 
-            height={80} 
-            className="mx-auto"
-          />
-        </div>
+        
+        {isClient && (
+          <div className="mb-6">
+            <Image 
+              src="/Circular-Logo.png" 
+              alt="Zillionite Logo" 
+              width={80} 
+              height={80} 
+              className="mx-auto"
+            />
+          </div>
+        )}
         
         <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500 mb-4">
           Page Not Found
         </h1>
         
         <p className="text-gray-600 mb-8">
-          The page your&apos;e looking for doesn&apos;t exist or has been moved.
+          The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
         
         <Link 

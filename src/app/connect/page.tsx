@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
+import { useIsClient } from '../utils/client';  // ✅ Ensure this import is correct
 
 interface FloatingLogo {
   id: number;
@@ -15,8 +16,9 @@ interface FloatingLogo {
 }
 
 export default function Connect() {
+  const isClient = useIsClient();  // ✅ Now properly used
   const router = useRouter();
-  // Define a type for the form data
+
   interface FormData {
     name: string;
     phone: string;
@@ -25,6 +27,7 @@ export default function Connect() {
     notes: string;
     [key: string]: string; 
   }
+
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
@@ -32,10 +35,12 @@ export default function Connect() {
     entity: "",
     notes: "",
   });
-  
+
   const [floatingLogos, setFloatingLogos] = useState<FloatingLogo[]>([]);
-  
+
   useEffect(() => {
+    if (!isClient) return; // ✅ Ensures this runs only on client side
+
     const logos: FloatingLogo[] = [];
     for (let i = 0; i < 15; i++) {
       logos.push({
@@ -48,23 +53,26 @@ export default function Connect() {
       });
     }
     setFloatingLogos(logos);
-  }, []);
-  
+  }, [isClient]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
     router.push('/thank-you');
   };
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
+
+  // ✅ Prevents rendering if still determining client-side
+  if (!isClient) return null;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white py-12 relative overflow-hidden">
-      {/* Floating Logos Animation - Only render when logos are available */}
       {floatingLogos.length > 0 && floatingLogos.map((logo) => (
         <motion.div
           key={logo.id}
@@ -109,7 +117,6 @@ export default function Connect() {
             </p>
           </motion.div>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {["name", "phone", "email", "entity"].map((field) => (
               <div key={field} className="group">
@@ -151,7 +158,6 @@ export default function Connect() {
             </motion.button>
           </form>
 
-          {/* Social Links */}
           <div className="mt-12 pt-6 border-t border-gray-200">
             <p className="text-center text-gray-600 mb-4">Connect with us on social media</p>
             <div className="flex justify-center space-x-8">
