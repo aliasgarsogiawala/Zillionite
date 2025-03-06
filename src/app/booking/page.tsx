@@ -7,18 +7,15 @@ import { useIsClient } from "../utils/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-// Add Razorpay type declaration
-declare global {
-  interface Window {
-    Razorpay: any;
-  }
-}
-
-export const dynamic = "force-dynamic"; // Ensures Next.js renders this page dynamically
+// Add these exports
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+export const revalidate = 0;
 
 export default function Booking() {
   const isClient = useIsClient();
   const [date, setDate] = useState<Date | null>(null);
+  const [mounted, setMounted] = useState(false);
   const [timeSlot, setTimeSlot] = useState("");
   const [step, setStep] = useState(1); // 1: Date selection, 2: Time selection, 3: Confirmation
   const router = useRouter();
@@ -32,14 +29,18 @@ export default function Booking() {
   useEffect(() => {
     if (isClient) {
       setDate(new Date());
-      
-      // Load Razorpay script
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.async = true;
-      document.body.appendChild(script);
+      setMounted(true);
     }
   }, [isClient]);
+
+  // Add safety check for server-side rendering
+  if (!mounted || !isClient) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+      </div>
+    );
+  }
 
   const timeSlots = ["12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM"];
 
@@ -75,45 +76,11 @@ export default function Booking() {
     
     setLoading(true);
     
-    try {
-      // In a real implementation, you would make an API call to your backend
-      // to create an order and get an order ID from Razorpay
-      
-      // For demo purposes, we'll use direct checkout
-      const options = {
-        key: "rzp_test_YOUR_KEY_ID", // Replace with your Razorpay key
-        amount: 170000, // Amount in paise (₹1,700)
-        currency: "INR",
-        name: "Zillionite",
-        description: "Leadership Consultation",
-        image: "/Circular-Logo.png",
-        handler: function(response: any) {
-          // Handle successful payment
-          console.log("Payment successful", response);
-          router.push('/thank-you');
-        },
-        prefill: {
-          name: customerDetails.name,
-          email: customerDetails.email,
-          contact: customerDetails.phone
-        },
-        notes: {
-          booking_date: date?.toISOString(),
-          time_slot: timeSlot
-        },
-        theme: {
-          color: "#663399"
-        }
-      };
-      
-      const razorpay = new window.Razorpay(options);
-      razorpay.open();
+    // Simulate processing
+    setTimeout(() => {
       setLoading(false);
-    } catch (error) {
-      console.error("Payment error:", error);
-      setLoading(false);
-      alert("Payment initialization failed. Please try again.");
-    }
+      router.push('/thank-you');
+    }, 2000);
   };
 
   const isWednesdayOrFriday = ({ date }: { date: Date }) => {
@@ -229,7 +196,7 @@ export default function Booking() {
                           className="mx-auto rounded-lg shadow-md"
                           locale="en-US"
                           tileDisabled={tileDisabled}
-                          tileClassName={({ date, view }) => 
+                          tileClassName={({ date }) => 
                             isWednesdayOrFriday({ date }) ? 'available-date' : ''
                           }
                         />
