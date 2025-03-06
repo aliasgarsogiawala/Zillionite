@@ -7,15 +7,9 @@ import { useIsClient } from "../utils/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-// Add these exports
-export const dynamic = 'force-dynamic';
-export const fetchCache = 'force-no-store';
-export const revalidate = 0;
-
 export default function Booking() {
   const isClient = useIsClient();
   const [date, setDate] = useState<Date | null>(null);
-  const [mounted, setMounted] = useState(false);
   const [timeSlot, setTimeSlot] = useState("");
   const [step, setStep] = useState(1); // 1: Date selection, 2: Time selection, 3: Confirmation
   const router = useRouter();
@@ -29,18 +23,8 @@ export default function Booking() {
   useEffect(() => {
     if (isClient) {
       setDate(new Date());
-      setMounted(true);
     }
   }, [isClient]);
-
-  // Add safety check for server-side rendering
-  if (!mounted || !isClient) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
-      </div>
-    );
-  }
 
   const timeSlots = ["12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM"];
 
