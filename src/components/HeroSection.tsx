@@ -7,7 +7,7 @@ export default function HeroSection() {
     <section className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#D1B3FF] to-[#663399] text-white">
       <div className="absolute inset-0">
         <Image
-          src="/HeroSection.jpg"
+          src="/HeroSection.JPG"
           alt="Background"
           layout="fill"
           objectFit="cover"
