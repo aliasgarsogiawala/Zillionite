@@ -1,12 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    webpack: (config) => {
-        config.module.rules.push({
-            test: /\.css$/i,
-            use: ["style-loader", "css-loader"],
-        });
-        return config;
-    },
+  // Remove any custom CSS configuration here
+  reactStrictMode: true,
+  images: {
+    domains: ['via.placeholder.com'],
+  },
 }
 
 module.exports = nextConfig
