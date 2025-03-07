@@ -9,9 +9,9 @@ export default function HeroSection() {
         <Image
           src="/HeroSection.JPG"
           alt="Background"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-90"
+          fill
+          className="opacity-90 object-cover"
+          priority
         />
       </div>
 
