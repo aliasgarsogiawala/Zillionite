@@ -1,16 +1,17 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
     <section className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#D1B3FF] to-[#663399] text-white">
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/HeroSection.jpg"
           alt="Background"
-          
+          fill
           className="opacity-90 object-cover"
-          
+          priority
         />
       </div>
 
