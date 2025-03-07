@@ -1,14 +1,6 @@
-import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import Layout from "@/components/Layout";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-});
-
-console.log("Inter Font Object:", inter); // ✅ Debugging line
 
 export const metadata: Metadata = {
   title: "Zillionite",
@@ -21,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </head>
-      <body className={`${inter?.className || ""} antialiased`}>
+      <body className="antialiased">
         <Layout>{children}</Layout>
       </body>
     </html>

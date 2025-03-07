@@ -19,7 +19,8 @@
     "react-calendar": "^5.1.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "vercel": "^41.3.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
