@@ -2,27 +2,14 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-export const dynamic = "force-dynamic";
-export const fetchCache = 'force-no-store';
-export const revalidate = 0;
+export const dynamic = "force-dynamic"; // Ensures Next.js renders this page dynamically
 
 export default function DevelopingLeaders() {
   const [isClient, setIsClient] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-    setMounted(true);
   }, []);
-
-  // Add safety check for server-side rendering
-  if (!mounted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
-      </div>
-    );
-  }
 
   const questions = [
     "What makes a business survive for 100 years?",

@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -37,15 +36,7 @@ export default function HeroSection() {
         </motion.p>
 
         {/* Call-to-Action Button */}
-        <Link href="/shweta">
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-6 px-6 py-3 bg-white text-[#663399] font-bold text-lg rounded-full shadow-lg hover:bg-black transition"
-          >
-            Get Started
-          </motion.button>
-        </Link>
+        
       </div>
     </section>
   );

@@ -119,6 +119,20 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-white to-purple-50 pt-0 pb-6 font-sans">
       
       <HeroSection/>
+
+      <div className="flex justify-center items-center gap-4 w-full max-w-3xl mx-auto px-6 mt-8 mb-12">
+        <input 
+          type="text" 
+          placeholder="What is your greatest leadership challenge?" 
+          className="w-full px-6 py-4 text-lg rounded-xl border-2 border-purple-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-300 focus:outline-none transition-all duration-300 shadow-md"
+        />
+        <Link
+          href="/shweta"
+          className="px-6 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-300/50 transition-all duration-300 whitespace-nowrap"
+        >
+          Lead
+        </Link>
+      </div>
       
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-2 text-center bg-white py-12 rounded-2xl shadow-lg border border-purple-100 max-w-[90%]">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500 text-left">Business Leadership Books</h2>
