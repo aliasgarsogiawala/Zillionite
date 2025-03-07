@@ -7,11 +7,12 @@ export default function HeroSection() {
     <section className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#D1B3FF] to-[#663399] text-white">
       <div className="absolute inset-0">
         <Image
-          src="/HeroSection.jpg"
+          src="/hero-section.jpg"
           alt="Background"
           fill
           className="opacity-90 object-cover"
           priority
+          unoptimized
         />
       </div>
 
