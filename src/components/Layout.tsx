@@ -6,7 +6,6 @@ import { FaBars, FaTimes, FaYoutube, FaLinkedin, FaEnvelope } from "react-icons/
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
@@ -28,33 +27,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
-            <Link
-              href="/"
-              className="bg-[#663399] text-white px-6 py-3 rounded-md text-lg transition-all duration-300 hover:bg-[#4B0082]"
-            >
-              Lead
-            </Link>
-            <Link
-              href="/zillionite"
-              className="bg-[#663399] text-white px-6 py-3 rounded-md text-lg transition-all duration-300 hover:bg-[#4B0082]"
-            >
-              Zillionite
-            </Link>
-            <Link
-              href="/books"
-              className="bg-[#663399] text-white px-6 py-3 rounded-md text-lg transition-all duration-300 hover:bg-[#4B0082]"
-            >
-              Books
-            </Link>
-            <Link
-              href="/connect"
-              className="bg-[#663399] text-white px-6 py-3 rounded-md text-lg transition-all duration-300 hover:bg-[#4B0082]"
-            >
-              Connect
-            </Link>
+            {["/", "/zillionite", "/books", "/connect"].map((path, idx) => (
+              <Link
+                key={idx}
+                href={path}
+                className="bg-[#663399] text-white px-6 py-3 rounded-md text-lg transition-all duration-300 hover:bg-[#4B0082]"
+              >
+                {["Lead", "Zillionite", "Books", "Connect"][idx]}
+              </Link>
+            ))}
           </div>
 
-          {/* Hamburger Button (only shows when menu is closed) */}
+          {/* Hamburger Button */}
           <div className="md:hidden z-50">
             {!menuOpen && (
               <button onClick={toggleMenu} aria-label="Open Menu">
@@ -64,13 +48,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
 
-        {/* Side Drawer Menu */}
+        {/* Mobile Menu */}
         <div
           className={`fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           } z-40 flex flex-col p-6`}
         >
-          {/* Close Button */}
           <button
             className="self-end text-gray-800 hover:text-[#663399] transition"
             onClick={toggleMenu}
@@ -79,36 +62,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <FaTimes size={28} />
           </button>
 
-          {/* Links */}
           <div className="flex flex-col mt-12 space-y-6">
-            <Link
-              href="/"
-              onClick={toggleMenu}
-              className="bg-[#663399] text-white text-lg font-semibold py-3 rounded-md text-center hover:bg-[#4B0082] transition-all duration-300 shadow"
-            >
-              Lead
-            </Link>
-            <Link
-              href="/zillionite"
-              onClick={toggleMenu}
-              className="bg-[#663399] text-white text-lg font-semibold py-3 rounded-md text-center hover:bg-[#4B0082] transition-all duration-300 shadow"
-            >
-              Zillionite
-            </Link>
-            <Link
-              href="/books"
-              onClick={toggleMenu}
-              className="bg-[#663399] text-white text-lg font-semibold py-3 rounded-md text-center hover:bg-[#4B0082] transition-all duration-300 shadow"
-            >
-              Books
-            </Link>
-            <Link
-              href="/connect"
-              onClick={toggleMenu}
-              className="bg-[#663399] text-white text-lg font-semibold py-3 rounded-md text-center hover:bg-[#4B0082] transition-all duration-300 shadow"
-            >
-              Connect
-            </Link>
+            {["/", "/zillionite", "/books", "/connect"].map((path, idx) => (
+              <Link
+                key={idx}
+                href={path}
+                onClick={toggleMenu}
+                className="bg-[#663399] text-white text-lg font-semibold py-3 rounded-md text-center hover:bg-[#4B0082] transition-all duration-300 shadow"
+              >
+                {["Lead", "Zillionite", "Books", "Connect"][idx]}
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -125,80 +89,56 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main className="flex-grow">{children}</main>
 
       {/* Footer */}
-      
-    <footer className="w-full bg-white text-gray-800 py-6 mt-8 border-t border-gray-200">
-      <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        
-        {/* Left Side: Logo & Video */}
-        <div className="flex flex-col md:flex-row items-center gap-6">
-          
-          {/* Logo */}
-          <div className="flex justify-center md:justify-start">
-            <Image
-              src="/Circular-Logo.png"
-              alt="Zillionite Logo"
-              width={80}
-              height={80}
-              className="object-contain"
-            />
+      <footer className="w-full bg-white text-gray-800 py-6 border-t border-gray-200 mt-auto">
+        <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Logo + Video Section */}
+          <div className="flex flex-col md:flex-row items-center gap-6 w-full md:w-auto">
+            {/* Logo */}
+            <div className="flex justify-center md:justify-start">
+              <Image
+                src="/Circular-Logo.png"
+                alt="Zillionite Logo"
+                width={80}
+                height={80}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Footer Video */}
+            <div className="w-full md:w-[280px] h-[140px] relative overflow-hidden rounded-lg shadow-md">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover bg-gray-50"
+              >
+                <source src="/footer-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
 
-          {/* Footer Video */}
-          <div className="w-[280px] h-[140px] relative overflow-hidden rounded-lg shadow-md">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover bg-gray-50"
-            >
-              <source src="/footer-video.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
+          {/* Copyright & Socials */}
+          <div className="flex flex-col items-center md:items-end w-full md:w-auto">
+            <p className="text-sm font-medium text-center md:text-right mb-2 md:mb-0">
+              © {new Date().getFullYear()} Zillionite. All rights reserved.
+            </p>
 
-        {/* Right Side: Copyright & Socials */}
-        <div className="flex flex-col items-center md:items-end gap-4">
-          
-          {/* Copyright Text */}
-          <p className="text-sm text-center md:text-right font-medium">
-            © {new Date().getFullYear()} Zillionite. All rights reserved.
-          </p>
-
-          {/* Social Icons */}
-          <div className="flex space-x-6">
-            <Link
-              href="https://www.youtube.com/channel/UCZ9xEshbhWnyI7MgsfIKexA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
-            >
-              <FaYoutube />
-            </Link>
-
-            <Link
-              href="https://www.linkedin.com/company/zillionite/posts/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
-            >
-              <FaLinkedin />
-            </Link>
-
-            <Link
-              href="mailto:lead@zillionite.com"
-              className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
-            >
-              <FaEnvelope />
-            </Link>
+            <div className="flex justify-center space-x-6">
+              <Link href="https://www.youtube.com/channel/UCZ9xEshbhWnyI7MgsfIKexA" target="_blank">
+                <FaYoutube className="text-gray-700 hover:text-[#663399] text-xl transition-colors" />
+              </Link>
+              <Link href="https://www.linkedin.com/company/zillionite/posts/" target="_blank">
+                <FaLinkedin className="text-gray-700 hover:text-[#663399] text-xl transition-colors" />
+              </Link>
+              <Link href="mailto:lead@zillionite.com">
+                <FaEnvelope className="text-gray-700 hover:text-[#663399] text-xl transition-colors" />
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
-  
-
-
+      </footer>
     </div>
   );
 };
