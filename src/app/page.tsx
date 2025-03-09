@@ -7,55 +7,27 @@ import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentSlideTwo , setCurrentSlideTwo] = useState(0);
-  const[currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [currentSlideTwo, setCurrentSlideTwo] = useState(0);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
   const testimonials = [
-    {
-      image: "/T1.png",
-    },
-    {
-      image: "/T2.png",
-    },
-    {
-      image: "/T3.png",
-    },
-    {
-      image: "/T4.png",
-    },
-    {
-      image: "/T5.png",
-    },
-    {
-      image: "/T6.png",
-    },
-    {
-      image: "/T7.png",
-    },
-    {
-      image: "/T8.png",
-    },
-    {
-      image: "/T9.png",
-    },
-    {
-      image: "/T10.png",
-    },
-    {
-      image: "/T11.png",
-    },
-    {
-      image: "/T12.png",
-    },
-    {
-      image: "/T13.png",
-    },
-    {
-      image: "/T14.png",
-    },
-    {
-      image: "/T15.png",
-    }
-  ]
+    { image: "/T1.png" },
+    { image: "/T2.png" },
+    { image: "/T3.png" },
+    { image: "/T4.png" },
+    { image: "/T5.png" },
+    { image: "/T6.png" },
+    { image: "/T7.png" },
+    { image: "/T8.png" },
+    { image: "/T9.png" },
+    { image: "/T10.png" },
+    { image: "/T11.png" },
+    { image: "/T12.png" },
+    { image: "/T13.png" },
+    { image: "/T14.png" },
+    { image: "/T15.png" }
+  ];
+
   const slides = [
     {
       image: "/Developing-leaders.png",
@@ -86,19 +58,13 @@ export default function Home() {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
-  
-
   const nextslide = () => {
     setCurrentSlideTwo((prev) => (prev + 1) % slides2.length);
   };
 
-  
-
   const nexttest = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
-
-  
 
   useEffect(() => {
     const interval = setInterval(nextSlide, 4000);
@@ -117,111 +83,129 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-white to-purple-50 pt-0 pb-6 font-sans">
-      
-      <HeroSection/>
+      <HeroSection />
 
-      <div className="max-w-4xl mx-auto px-6 mt-8 mb-12">
-        <h2 className="text-2xl md:text-3xl font-semibold text-[#663399] text-center mb-8">
+      {/* Leadership Strategies Section */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 mt-8 mb-12">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#663399] text-center mb-8">
           Zillionite - Leadership strategies for Self Leadership and Business Leadership
         </h2>
-        
-        <div className="bg-white rounded-2xl shadow-lg border border-purple-100 p-6 md:p-8">
+
+        <div className="bg-white rounded-2xl shadow-lg border border-purple-100 p-4 sm:p-6 md:p-8">
           <div className="flex flex-col md:flex-row items-center gap-4">
-            <input 
-              type="text" 
-              placeholder="What is your greatest leadership challenge?" 
-              className="w-full px-6 py-4 text-lg rounded-xl border-2 border-purple-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-300 focus:outline-none transition-all duration-300 shadow-md bg-purple-50/30"
+            <input
+              type="text"
+              placeholder="What is your greatest leadership challenge?"
+              className="w-full px-4 py-3 sm:px-6 sm:py-4 text-base sm:text-lg rounded-xl border-2 border-purple-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-300 focus:outline-none transition-all duration-300 shadow-md bg-purple-50/30"
             />
             <Link
               href="/shweta"
-              className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-300/50 transition-all duration-300 whitespace-nowrap text-center text-lg"
+              className="w-full md:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-300/50 transition-all duration-300 whitespace-nowrap text-center text-lg"
             >
               Lead
             </Link>
           </div>
         </div>
       </div>
-      
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-2 text-center bg-white py-12 rounded-2xl shadow-lg border border-purple-100 max-w-[90%]">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500 text-left">Business Leadership Books</h2>
-        <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
-          <div className="w-full flex flex-col md:flex-row items-center md:items-start gap-8">
-            <Link href={slides[currentSlide].link} className="w-full md:w-auto">
-              <Image 
-                src={slides[currentSlide].image} 
-                alt="Book Image" 
-                width={500} 
-                height={500} 
-                className="rounded-xl shadow-xl cursor-pointer border-none w-full max-w-[300px] mx-auto md:max-w-none transform hover:scale-105 transition-transform duration-500" 
-              />
+
+      {/* Business Leadership Books */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 mt-2 text-center bg-white py-8 sm:py-12 rounded-2xl shadow-lg border border-purple-100 max-w-[90%]">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500 text-left">
+          Business Leadership Books
+        </h2>
+        <div className="relative w-full max-w-4xl mx-auto mt-6 flex flex-col md:flex-row items-center gap-8">
+          <Link href={slides[currentSlide].link} className="w-full md:w-auto">
+            <Image
+              src={slides[currentSlide].image}
+              alt="Book Image"
+              width={500}
+              height={500}
+              className="rounded-xl shadow-xl cursor-pointer border-none w-full max-w-[300px] mx-auto md:max-w-none transform hover:scale-105 transition-transform duration-500"
+            />
+          </Link>
+          <div className="flex flex-col items-center md:items-start gap-6 mt-6 md:mt-0">
+            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#663399]">{slides[currentSlide].text}</p>
+            <Link
+              href={slides[currentSlide].link}
+              className="px-8 py-3 sm:px-10 sm:py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white text-lg sm:text-xl font-bold rounded-xl shadow-xl hover:shadow-purple-300/50 transition-all duration-300 transform hover:translate-y-[-2px] w-full md:w-auto text-center"
+            >
+              Lead
             </Link>
-            <div className="flex flex-col items-center md:items-start gap-6 mt-6 md:mt-0">
-              <p className="text-2xl md:text-3xl font-bold text-[#663399]">{slides[currentSlide].text}</p>
-              <Link 
-                href={slides[currentSlide].link} 
-                className="px-10 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white text-xl font-bold rounded-xl shadow-xl hover:shadow-purple-300/50 transition-all duration-300 transform hover:translate-y-[-2px] w-full md:w-auto text-center"
-              >
-                Lead
-              </Link>
-            </div>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 text-center bg-white py-12 rounded-2xl shadow-lg border border-purple-100 max-w-[90%]">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500 text-left">Self Leadership Books</h2>
-        <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center">
-          <div className="w-full flex flex-col md:flex-row items-center md:items-start gap-8">
-            <Link href={slides2[currentSlideTwo].link} className="w-full md:w-auto">
-              <Image 
-                src={slides2[currentSlideTwo].image} 
-                alt="Book Image" 
-                width={500} 
-                height={500} 
-                className="rounded-xl shadow-xl cursor-pointer w-full max-w-[300px] mx-auto md:max-w-none transform hover:scale-105 transition-transform duration-500" 
-              />
+      {/* Self Leadership Books */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 mt-12 text-center bg-white py-8 sm:py-12 rounded-2xl shadow-lg border border-purple-100 max-w-[90%]">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500 text-left">
+          Self Leadership Books
+        </h2>
+        <div className="relative w-full max-w-4xl mx-auto mt-6 flex flex-col md:flex-row items-center gap-8">
+          <Link href={slides2[currentSlideTwo].link} className="w-full md:w-auto">
+            <Image
+              src={slides2[currentSlideTwo].image}
+              alt="Book Image"
+              width={500}
+              height={500}
+              className="rounded-xl shadow-xl cursor-pointer w-full max-w-[300px] mx-auto md:max-w-none transform hover:scale-105 transition-transform duration-500"
+            />
+          </Link>
+          <div className="flex flex-col items-center md:items-start gap-6 mt-6 md:mt-0">
+            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#663399]">{slides2[currentSlideTwo].text}</p>
+            <Link
+              href={slides2[currentSlideTwo].link}
+              className="px-8 py-3 sm:px-10 sm:py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white text-lg sm:text-xl font-bold rounded-xl shadow-xl hover:shadow-purple-300/50 transition-all duration-300 transform hover:translate-y-[-2px] w-full md:w-auto text-center"
+            >
+              Lead
             </Link>
-            <div className="flex flex-col items-center md:items-start gap-6 mt-6 md:mt-0">
-              <p className="text-2xl md:text-3xl font-bold text-[#663399]">{slides2[currentSlideTwo].text}</p>
-              <Link 
-                href={slides2[currentSlideTwo].link} 
-                className="px-10 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white text-xl font-bold rounded-xl shadow-xl hover:shadow-purple-300/50 transition-all duration-300 transform hover:translate-y-[-2px] w-full md:w-auto text-center"
-              >
-                Lead
-              </Link>
-            </div>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 flex flex-col md:flex-row items-center gap-10 bg-white py-12 rounded-2xl shadow-lg border border-purple-100 max-w-[90%]">
+      {/* Thought Leadership Section */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 mt-12 flex flex-col md:flex-row items-center gap-10 bg-white py-8 sm:py-12 rounded-2xl shadow-lg border border-purple-100 max-w-[90%]">
         <div className="text-left w-full md:w-1/2 space-y-6">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500">Thought Leadership - Finance Wisdom</h1>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-            Design Wealth Map for each Financial Milestones<br></br>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500">
+            Thought Leadership - Finance Wisdom
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
+            Design Wealth Map for each Financial Milestones<br />
             Know how to create Wealth - Money, Vision, Time and Impact- All of it!
           </p>
-          <div className="pt-6">
-            <Link href="/thoughtleadership" className="inline-block px-10 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white text-xl font-bold rounded-xl shadow-xl hover:shadow-purple-300/50 transition-all duration-300 transform hover:translate-y-[-2px]">Lead</Link>
+          <div className="pt-4 sm:pt-6">
+            <Link
+              href="/thoughtleadership"
+              className="inline-block px-8 py-3 sm:px-10 sm:py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white text-lg sm:text-xl font-bold rounded-xl shadow-xl hover:shadow-purple-300/50 transition-all duration-300 transform hover:translate-y-[-2px]"
+            >
+              Lead
+            </Link>
           </div>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/pexels-crazy-motions-80195021-12198525.jpg" alt="Thought Leadership" width={450} height={300} className="rounded-xl shadow-xl max-w-[350px] w-full transform hover:scale-105 transition-transform duration-500" />
+          <Image
+            src="/pexels-crazy-motions-80195021-12198525.jpg"
+            alt="Thought Leadership"
+            width={450}
+            height={300}
+            className="rounded-xl shadow-xl max-w-[350px] w-full transform hover:scale-105 transition-transform duration-500"
+          />
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-12 mb-12 text-center py-12 rounded-2xl shadow-lg border border-purple-100 bg-white max-w-[90%]">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500 mb-8">Client Diaries</h2>
+      {/* Client Diaries Section */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 mt-12 mb-12 text-center py-8 sm:py-12 rounded-2xl shadow-lg border border-purple-100 bg-white max-w-[90%]">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500 mb-8">
+          Client Diaries
+        </h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center justify-center">
-          
-          <div className="relative flex items-center justify-center w-full h-[350px] md:h-[500px] overflow-visible">
+          <div className="relative flex items-center justify-center w-full h-[300px] sm:h-[350px] md:h-[500px] overflow-visible">
             {testimonials.map((testimonial, index) => {
               const position = (index - currentTestimonial + testimonials.length) % testimonials.length;
               let scale = 1;
               let opacity = 1;
               let xOffset = 0;
               let zIndex = 1;
-      
+
               if (position === 0) {
                 scale = 1.2;
                 opacity = 1;
@@ -236,7 +220,7 @@ export default function Home() {
                 opacity = 0;
                 zIndex = 1;
               }
-      
+
               return (
                 <motion.div
                   key={index}
@@ -249,19 +233,17 @@ export default function Home() {
                     <Image
                       src={testimonial.image}
                       alt="Testimonial"
-                      width={400}
-                      height={500}
-                      className="rounded-lg"
+                      width={300}
+                      height={400}
+                      className="rounded-lg w-[200px] sm:w-[300px] h-auto mx-auto"
                     />
                   </div>
                 </motion.div>
               );
             })}
           </div>
-         
         </div>
       </div>
-
     </div>
   );
 }

@@ -89,56 +89,62 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main className="flex-grow">{children}</main>
 
       {/* Footer */}
-      <footer className="w-full bg-white text-gray-800 py-6 border-t border-gray-200 mt-auto">
-        <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo + Video Section */}
-          <div className="flex flex-col md:flex-row items-center gap-6 w-full md:w-auto">
-            {/* Logo */}
-            <div className="flex justify-center md:justify-start">
-              <Image
-                src="/Circular-Logo.png"
-                alt="Zillionite Logo"
-                width={80}
-                height={80}
-                className="object-contain"
-              />
-            </div>
+      <footer className="w-full bg-white text-gray-800 py-4 border-t border-gray-200 mt-auto">
+  <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
 
-            {/* Footer Video */}
-            <div className="w-full md:w-[280px] h-[140px] relative overflow-hidden rounded-lg shadow-md">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover bg-gray-50"
-              >
-                <source src="/footer-video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
+    {/* Left Side: Video (NO Logo) */}
+    <div className="w-full md:w-auto flex justify-center md:justify-start">
+      <div className="w-[280px] h-[140px] md:h-[160px] relative overflow-hidden rounded-lg shadow-md">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover bg-gray-50"
+        >
+          <source src="/footer-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
 
-          {/* Copyright & Socials */}
-          <div className="flex flex-col items-center md:items-end w-full md:w-auto">
-            <p className="text-sm font-medium text-center md:text-right mb-2 md:mb-0">
-              © {new Date().getFullYear()} Zillionite. All rights reserved.
-            </p>
+    {/* Right Side: Copyright + Socials */}
+    <div className="w-full md:w-auto flex flex-col items-center md:items-end gap-4">
+      <p className="text-sm text-center md:text-right font-medium">
+        © {new Date().getFullYear()} Zillionite. All rights reserved.
+      </p>
 
-            <div className="flex justify-center space-x-6">
-              <Link href="https://www.youtube.com/channel/UCZ9xEshbhWnyI7MgsfIKexA" target="_blank">
-                <FaYoutube className="text-gray-700 hover:text-[#663399] text-xl transition-colors" />
-              </Link>
-              <Link href="https://www.linkedin.com/company/zillionite/posts/" target="_blank">
-                <FaLinkedin className="text-gray-700 hover:text-[#663399] text-xl transition-colors" />
-              </Link>
-              <Link href="mailto:lead@zillionite.com">
-                <FaEnvelope className="text-gray-700 hover:text-[#663399] text-xl transition-colors" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <div className="flex justify-center md:justify-end space-x-6">
+        <Link
+          href="https://www.youtube.com/channel/UCZ9xEshbhWnyI7MgsfIKexA"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
+        >
+          <FaYoutube />
+        </Link>
+
+        <Link
+          href="https://www.linkedin.com/company/zillionite/posts/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
+        >
+          <FaLinkedin />
+        </Link>
+
+        <Link
+          href="mailto:lead@zillionite.com"
+          className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
+        >
+          <FaEnvelope />
+        </Link>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
     </div>
   );
 };
