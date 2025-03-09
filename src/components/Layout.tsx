@@ -15,7 +15,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <nav className="w-full bg-white text-black py-6 px-6 shadow-md md:py-8 relative z-50">
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold cursor-pointer flex items-center">
+          <Link href="/" className="flex items-center">
             <Image
               src="/Circular-Logo.png"
               alt="Zillionite Logo"
@@ -54,64 +54,70 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </Link>
           </div>
 
-          {/* Hamburger Button */}
+          {/* Hamburger Button (only shows when menu is closed) */}
           <div className="md:hidden z-50">
-            <button onClick={toggleMenu} aria-label="Toggle Menu">
-              {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
+            {!menuOpen && (
+              <button onClick={toggleMenu} aria-label="Open Menu">
+                <FaBars size={28} />
+              </button>
+            )}
           </div>
         </div>
 
         {/* Side Drawer Menu */}
         <div
-          className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
+          className={`fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${
             menuOpen ? "translate-x-0" : "translate-x-full"
-          } z-40 flex flex-col items-start p-6 space-y-6`}
+          } z-40 flex flex-col p-6`}
         >
+          {/* Close Button */}
           <button
-            className="self-end mb-4"
+            className="self-end text-gray-800 hover:text-[#663399] transition"
             onClick={toggleMenu}
             aria-label="Close Menu"
           >
-            <FaTimes size={24} />
+            <FaTimes size={28} />
           </button>
 
-          <Link
-            href="/"
-            onClick={toggleMenu}
-            className="w-full text-left bg-[#663399] text-white px-4 py-3 rounded-md text-lg transition-all duration-300 hover:bg-[#4B0082]"
-          >
-            Lead
-          </Link>
-          <Link
-            href="/zillionite"
-            onClick={toggleMenu}
-            className="w-full text-left bg-[#663399] text-white px-4 py-3 rounded-md text-lg transition-all duration-300 hover:bg-[#4B0082]"
-          >
-            Zillionite
-          </Link>
-          <Link
-            href="/books"
-            onClick={toggleMenu}
-            className="w-full text-left bg-[#663399] text-white px-4 py-3 rounded-md text-lg transition-all duration-300 hover:bg-[#4B0082]"
-          >
-            Books
-          </Link>
-          <Link
-            href="/connect"
-            onClick={toggleMenu}
-            className="w-full text-left bg-[#663399] text-white px-4 py-3 rounded-md text-lg transition-all duration-300 hover:bg-[#4B0082]"
-          >
-            Connect
-          </Link>
+          {/* Links */}
+          <div className="flex flex-col mt-12 space-y-6">
+            <Link
+              href="/"
+              onClick={toggleMenu}
+              className="bg-[#663399] text-white text-lg font-semibold py-3 rounded-md text-center hover:bg-[#4B0082] transition-all duration-300 shadow"
+            >
+              Lead
+            </Link>
+            <Link
+              href="/zillionite"
+              onClick={toggleMenu}
+              className="bg-[#663399] text-white text-lg font-semibold py-3 rounded-md text-center hover:bg-[#4B0082] transition-all duration-300 shadow"
+            >
+              Zillionite
+            </Link>
+            <Link
+              href="/books"
+              onClick={toggleMenu}
+              className="bg-[#663399] text-white text-lg font-semibold py-3 rounded-md text-center hover:bg-[#4B0082] transition-all duration-300 shadow"
+            >
+              Books
+            </Link>
+            <Link
+              href="/connect"
+              onClick={toggleMenu}
+              className="bg-[#663399] text-white text-lg font-semibold py-3 rounded-md text-center hover:bg-[#4B0082] transition-all duration-300 shadow"
+            >
+              Connect
+            </Link>
+          </div>
         </div>
 
-        {/* Backdrop for mobile menu */}
+        {/* Backdrop */}
         {menuOpen && (
           <div
             onClick={toggleMenu}
-            className="fixed inset-0 bg-black bg-opacity-30 z-30 backdrop-blur-sm"
-          ></div>
+            className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-30"
+          />
         )}
       </nav>
 
