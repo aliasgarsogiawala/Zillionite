@@ -125,52 +125,80 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main className="flex-grow">{children}</main>
 
       {/* Footer */}
-      <footer className="w-full bg-white text-gray-800 py-6 mt-8">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center md:justify-between gap-8">
-          {/* Video Section */}
-          <div className="w-full md:w-[240px] h-[120px] relative overflow-hidden rounded-lg shadow-md">
+      
+    <footer className="w-full bg-white text-gray-800 py-6 mt-8 border-t border-gray-200">
+      <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        {/* Left Side: Logo & Video */}
+        <div className="flex flex-col md:flex-row items-center gap-6">
+          
+          {/* Logo */}
+          <div className="flex justify-center md:justify-start">
+            <Image
+              src="/Circular-Logo.png"
+              alt="Zillionite Logo"
+              width={80}
+              height={80}
+              className="object-contain"
+            />
+          </div>
+
+          {/* Footer Video */}
+          <div className="w-[280px] h-[140px] relative overflow-hidden rounded-lg shadow-md">
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-contain bg-gray-50"
+              className="w-full h-full object-cover bg-gray-50"
             >
               <source src="/footer-video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
             </video>
           </div>
+        </div>
 
-          {/* Footer Links */}
-          <div className="flex flex-col items-center md:items-start flex-1">
-            <p className="text-sm font-medium mb-2">
-              Copyright © All rights reserved.
-            </p>
+        {/* Right Side: Copyright & Socials */}
+        <div className="flex flex-col items-center md:items-end gap-4">
+          
+          {/* Copyright Text */}
+          <p className="text-sm text-center md:text-right font-medium">
+            © {new Date().getFullYear()} Zillionite. All rights reserved.
+          </p>
 
-            <div className="flex space-x-6">
-              <Link
-                href="https://www.youtube.com/channel/UCZ9xEshbhWnyI7MgsfIKexA"
-                target="_blank"
-                className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
-              >
-                <FaYoutube />
-              </Link>
-              <Link
-                href="https://www.linkedin.com/company/zillionite/posts/"
-                target="_blank"
-                className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
-              >
-                <FaLinkedin />
-              </Link>
-              <Link
-                href="mailto:lead@zillionite.com"
-                className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
-              >
-                <FaEnvelope />
-              </Link>
-            </div>
+          {/* Social Icons */}
+          <div className="flex space-x-6">
+            <Link
+              href="https://www.youtube.com/channel/UCZ9xEshbhWnyI7MgsfIKexA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
+            >
+              <FaYoutube />
+            </Link>
+
+            <Link
+              href="https://www.linkedin.com/company/zillionite/posts/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
+            >
+              <FaLinkedin />
+            </Link>
+
+            <Link
+              href="mailto:lead@zillionite.com"
+              className="text-gray-700 hover:text-[#663399] text-xl transition-colors"
+            >
+              <FaEnvelope />
+            </Link>
           </div>
         </div>
-      </footer>
+      </div>
+    </footer>
+  
+
+
     </div>
   );
 };

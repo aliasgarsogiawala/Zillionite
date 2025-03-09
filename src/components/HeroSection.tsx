@@ -18,15 +18,16 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* MOBILE */}
-      <div className="block md:hidden w-full px-6 py-8 text-center bg-white">
+      {/* MOBILE SECTION */}
+      <div className="block md:hidden w-full px-6 py-4 border-2 border-[#663399] rounded-md mt-[-16px] bg-white relative z-10">
         <motion.h1
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-3xl font-extrabold leading-tight"
+          className="text-3xl font-extrabold leading-tight text-center"
         >
-          <span className="text-white">SHIELD</span>{" "}
+          {/* SHIELD is purple for mobile */}
+          <span className="text-[#663399]">SHIELD</span>{" "}
           <span className="text-[#663399]">BUILD LEAD</span>
         </motion.h1>
 
@@ -34,13 +35,13 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="mt-4 text-base text-gray-800"
+          className="mt-2 text-base text-gray-800 text-center"
         >
           Developing Leaders ... Leading Development
         </motion.p>
       </div>
 
-      {/* DESKTOP */}
+      {/* DESKTOP SECTION */}
       <div className="hidden md:block absolute top-1/2 left-16 -translate-y-1/2 max-w-xl z-10">
         <div className="backdrop-blur-md bg-white/20 p-8 rounded-2xl border border-white/10">
           <motion.h1
@@ -49,6 +50,7 @@ export default function HeroSection() {
             transition={{ duration: 1 }}
             className="text-6xl font-extrabold leading-tight"
           >
+            {/* SHIELD is white for desktop */}
             <span className="text-white">SHIELD</span>{" "}
             <span className="text-[#663399]">BUILD LEAD</span>
           </motion.h1>
