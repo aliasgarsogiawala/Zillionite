@@ -71,19 +71,21 @@ export default function Shweta() {
     };
     return (
         <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-6">
+            <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">
+                    Zillion Dollar Answer to Your Leadership Challenge….
+                </h1>
+                <p className="mt-4 text-lg text-gray-600">
+                    Crack the Code of Experiential Leadership with Shweta!
+                </p>
 
 <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-4 flex flex-col md:flex-row items-center gap-8 bg-white py-12 rounded-lg shadow-sm">
         <div className="text-left w-full md:w-1/2">
-          <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">Hey, I am Shweta - Leading Zillionite till Zillionite</h1>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#663399]">Hey, I am Shweta - Leading Zillionite till Zillionite</h2>
           <p className="mt-4 text-lg text-gray-600">
             Gamed to Level Up Financial Leadership!<br></br>
             Definitive Winning Strategies to build Wealth for YOU.<br></br>
-            So, what is your Leadership Challenge?
           </p>
          
-        </div>
-        <div className="w-full md:w-1/2 flex justify-center">
-          <Image src="/Shweta-Zillionite.jpeg" alt="Zillionite Preview" width={450} height={70} className="rounded-lg shadow-lg" />
         </div>
       </div>
 
@@ -93,12 +95,8 @@ export default function Shweta() {
                 transition={{ duration: 0.8 }}
                 className="flex flex-col items-center text-center mb-16"
             >
-                <h1 className="text-3xl lg:text-4xl font-bold text-[#663399]">
-                    Zillion Dollar Answer to Your Leadership Challenge….
-                </h1>
-                <p className="mt-4 text-lg text-gray-600">
-                    Crack the Code of Experiential Leadership with Shweta!
-                </p>
+                
+                
             </motion.div>
 
             <div className="max-w-4xl mx-auto relative">

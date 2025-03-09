@@ -120,18 +120,26 @@ export default function Home() {
       
       <HeroSection/>
 
-      <div className="flex justify-center items-center gap-4 w-full max-w-3xl mx-auto px-6 mt-8 mb-12">
-        <input 
-          type="text" 
-          placeholder="What is your greatest leadership challenge?" 
-          className="w-full px-6 py-4 text-lg rounded-xl border-2 border-purple-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-300 focus:outline-none transition-all duration-300 shadow-md"
-        />
-        <Link
-          href="/shweta"
-          className="px-6 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-300/50 transition-all duration-300 whitespace-nowrap"
-        >
-          Lead
-        </Link>
+      <div className="max-w-4xl mx-auto px-6 mt-8 mb-12">
+        <h2 className="text-2xl md:text-3xl font-semibold text-[#663399] text-center mb-8">
+          Zillionite - Leadership strategies for Self Leadership and Business Leadership
+        </h2>
+        
+        <div className="bg-white rounded-2xl shadow-lg border border-purple-100 p-6 md:p-8">
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            <input 
+              type="text" 
+              placeholder="What is your greatest leadership challenge?" 
+              className="w-full px-6 py-4 text-lg rounded-xl border-2 border-purple-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-300 focus:outline-none transition-all duration-300 shadow-md bg-purple-50/30"
+            />
+            <Link
+              href="/shweta"
+              className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-300/50 transition-all duration-300 whitespace-nowrap text-center text-lg"
+            >
+              Lead
+            </Link>
+          </div>
+        </div>
       </div>
       
       <div className="container mx-auto px-6 md:px-12 lg:px-16 mt-2 text-center bg-white py-12 rounded-2xl shadow-lg border border-purple-100 max-w-[90%]">
