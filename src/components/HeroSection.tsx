@@ -5,6 +5,7 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <section className="relative w-full h-screen flex items-center bg-gradient-to-b from-[#D1B3FF] to-[#663399] text-white">
+      {/* Background Image */}
       <div className="absolute inset-0">
         <Image
           src="/hero-section.jpg"
@@ -17,24 +18,24 @@ export default function HeroSection() {
       </div>
 
       {/* Content Wrapper */}
-      <div className="relative z-10 text-left max-w-2xl px-4 md:px-8 ml-0 md:ml-4 lg:ml-8">
-        <div className="backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-white/10 w-[80vw] md:w-auto">
-          <motion.h1 
-            initial={{ opacity: 0, y: -20 }} 
-            animate={{ opacity: 1, y: 0 }} 
+      <div className="relative z-10 flex justify-start w-full px-4 md:px-16">
+        <div className="backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-white/10 w-full md:w-auto max-w-2xl">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             className="text-4xl md:text-6xl font-extrabold leading-tight"
           >
-            SHIELD  <span className="text-[#663399]">BUILD LEAD</span>
+            SHIELD <span className="text-[#663399]">BUILD LEAD</span>
           </motion.h1>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
             className="mt-4 text-lg md:text-xl text-white/90"
           >
-           Developing Leaders ... Leading Development
+            Developing Leaders ... Leading Development
           </motion.p>
         </div>
       </div>
