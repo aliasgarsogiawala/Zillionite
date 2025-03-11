@@ -5,7 +5,6 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <section className="relative w-full flex flex-col items-center justify-start bg-white text-[#663399]">
-      {/* Hero Image */}
       <div className="w-full relative h-[50vh] md:h-screen border-b-2 border-[#663399]">
         <Image
           src="/hero-section.jpg"
@@ -17,7 +16,6 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* MOBILE SECTION */}
       <div className="block md:hidden w-full border-x-2 border-b-2 border-[#663399] rounded-b-md bg-white relative z-10 px-4 py-6 -mt-[2px]">
         <motion.h1
           initial={{ opacity: 0, y: 10 }}
@@ -39,7 +37,6 @@ export default function HeroSection() {
         </motion.p>
       </div>
 
-      {/* DESKTOP SECTION */}
       <div className="hidden md:block absolute top-1/2 left-16 -translate-y-1/2 max-w-xl z-10">
         <div className="backdrop-blur-md bg-white/20 p-8 rounded-2xl border border-white/10">
           <motion.h1

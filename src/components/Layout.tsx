@@ -10,10 +10,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-black">
-      {/* Navbar */}
       <nav className="w-full bg-white text-black py-6 px-6 shadow-md md:py-8 relative z-50">
         <div className="container mx-auto flex justify-between items-center">
-          {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/Circular-Logo.png"
@@ -25,7 +23,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             />
           </Link>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
             {["/", "/zillionite", "/books", "/connect"].map((path, idx) => (
               <Link
@@ -38,7 +35,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             ))}
           </div>
 
-          {/* Hamburger Button */}
           <div className="md:hidden z-50">
             {!menuOpen && (
               <button onClick={toggleMenu} aria-label="Open Menu">
