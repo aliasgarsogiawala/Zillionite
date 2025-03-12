@@ -62,13 +62,25 @@ export default function LeadToLast() {
   };
 
   const sendCompletionEmail = async () => {
-    const response = await fetch("/api/send-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ answers: selectedAnswers })
-    });
-    if (response.ok) console.log("Email sent!");
-    else console.error("Failed to send email");
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ answers: selectedAnswers }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        console.log("Email sent successfully:", data.message);
+      } else {
+        console.error("Failed to send email:", data.message || response.statusText);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
   };
 
   const resetSurvey = () => {
