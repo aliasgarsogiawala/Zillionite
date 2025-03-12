@@ -47,7 +47,7 @@ export default function LeadToLast() {
     ]},
     { title: "Why do you become a Leader?", subQuestions: [
       "When you registered the name as Zillionite",
-      "When you lead as a Leader @ Zillionite"
+      "When you lead as a Leader Zillionite"
     ]}
   ];
 
