@@ -139,7 +139,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
 
           {/* Right side spacer for balance */}
-          <div className="w-[280px] hidden md:block"></div>
+          <div className="w-[280px] hidden md:block">Built by Aliasgar Sogiawala</div>
         </div>
       </footer>
     </div>
