@@ -6,6 +6,9 @@ export default function LeadToLast() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
   const [isComplete, setIsComplete] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
 
   const sections = [
     { title: "Why do you become a Leader?", subQuestions: [
@@ -56,25 +59,36 @@ export default function LeadToLast() {
         setCurrentQuestion(questionIndex + 1);
       } else {
         setIsComplete(true);
-        sendCompletionEmail();
+        // Remove automatic email sending here
       }
     }, 500);
   };
-
+  
   const sendCompletionEmail = async () => {
+    if (!userEmail || !userEmail.includes('@') || !userEmail.includes('.')) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+    
+    setEmailError("");
+    
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ answers: selectedAnswers }),
+        body: JSON.stringify({ 
+          answers: selectedAnswers,
+          email: userEmail 
+        }),
       });
       
       const data = await response.json();
       
       if (response.ok) {
         console.log("Email sent successfully:", data.message);
+        setEmailSent(true);
       } else {
         console.error("Failed to send email:", data.message || response.statusText);
       }
@@ -87,6 +101,7 @@ export default function LeadToLast() {
     setSelectedAnswers({});
     setCurrentQuestion(0);
     setIsComplete(false);
+    setEmailSent(false);
   };
 
   return (
@@ -139,17 +154,64 @@ export default function LeadToLast() {
               </AnimatePresence>
             </>
           ) : (
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-8">
-              <h1 className="text-3xl md:text-4xl font-bold text-[#663399] mb-6">
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="py-8">
+              <h1 className="text-3xl md:text-4xl font-bold text-[#663399] mb-6 text-center">
                 Thank you for completing the survey!
               </h1>
-              <p className="text-xl text-gray-700 mb-8">
-                Your leadership profile has been recorded. You’ll receive an email summary soon.
+              <p className="text-xl text-gray-700 mb-8 text-center">
+                Your leadership profile has been recorded.
               </p>
               
-              <button onClick={resetSurvey} className="px-8 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-300/50 transition-all duration-300">
-                Start Again
-              </button>
+              {!emailSent ? (
+                <div className="mb-8">
+                  <h2 className="text-2xl font-semibold text-[#663399] mb-4">Get Your Results by Email</h2>
+                  <div className="flex flex-col md:flex-row gap-4">
+                    <input
+                      type="email"
+                      value={userEmail}
+                      onChange={(e) => setUserEmail(e.target.value)}
+                      placeholder="Enter your email address"
+                      className="flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#663399]"
+                    />
+                    <button
+                      onClick={sendCompletionEmail}
+                      className="px-6 py-3 bg-gradient-to-r from-[#663399] to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
+                    >
+                      Send Results
+                    </button>
+                  </div>
+                  {emailError && <p className="mt-2 text-red-500">{emailError}</p>}
+                </div>
+              ) : (
+                <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-lg text-center">
+                  <p className="text-green-700">
+                    Results have been sent to your email! Check your inbox.
+                  </p>
+                </div>
+              )}
+              
+              <div className="space-y-6 mb-8">
+                <h2 className="text-2xl font-semibold text-[#663399]">Your Answers:</h2>
+                {Object.entries(selectedAnswers).map(([questionIndex, answerIndex]) => (
+                  <div key={questionIndex} className="bg-purple-50 p-4 rounded-lg text-left">
+                    <p className="font-medium text-[#663399]">
+                      {sections[parseInt(questionIndex)].title}
+                    </p>
+                    <p className="mt-2">
+                      {sections[parseInt(questionIndex)].subQuestions[answerIndex]}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="text-center">
+                <button 
+                  onClick={resetSurvey} 
+                  className="px-8 py-4 bg-gradient-to-r from-[#663399] to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-300/50 transition-all duration-300"
+                >
+                  Start Again
+                </button>
+              </div>
             </motion.div>
           )}
         </div>

@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
   try {
-    const { answers } = await request.json();
+    const { answers, email } = await request.json();
     
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       console.error("Missing email credentials in environment variables");
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
 
     const mailOptions = {
       from: `"Zillionite Leadership" <${process.env.EMAIL_USER}>`,
-      to: "itsaliasgar18@gmail.com",
+      to: email || "itsaliasgar18@gmail.com", // Use provided email or fallback
       subject: "Your Zillionite Leadership Assessment Results",
       html: `
         <!DOCTYPE html>
