@@ -8,13 +8,7 @@ import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useIsClient } from "../utils/client";
-
-// Add Razorpay type declaration
-declare global {
-  interface Window {
-    Razorpay: any;
-  }
-}
+import Link from "next/link";
 
 export const dynamic = "force-dynamic"; // Ensures Next.js renders this page dynamically
 
@@ -34,12 +28,6 @@ const Booking = () => {
   useEffect(() => {
     if (isClient) {
       setDate(new Date());
-
-      // Load Razorpay script
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.async = true;
-      document.body.appendChild(script);
     }
   }, [isClient]);
 
@@ -67,7 +55,7 @@ const Booking = () => {
     setTimeSlot(slot);
     setStep(3);
   };
-  // Move these functions here, before the return statement
+  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCustomerDetails((prev) => ({
@@ -76,57 +64,92 @@ const Booking = () => {
     }));
   };
 
+  // Updated payment handling with Instamojo script
   const handlePayment = () => {
-    if (
-      !customerDetails.name ||
-      !customerDetails.email ||
-      !customerDetails.phone
-    ) {
+    if (!customerDetails.name || !customerDetails.email || !customerDetails.phone) {
       alert("Please fill in all required fields");
       return;
     }
-
+    
     setLoading(true);
-
-    try {
-      // In a real implementation, you would make an API call to your backend
-      // to create an order and get an order ID from Razorpay
-
-      // For demo purposes, we'll use direct checkout
-      const options = {
-        key: "rzp_test_YOUR_KEY_ID", // Replace with your Razorpay key
-        amount: 170000, // Amount in paise (₹1,700)
-        currency: "INR",
-        name: "Zillionite",
-        description: "Leadership Consultation",
-        image: "/Circular-Logo.png",
-        handler: function (response: any) {
-          // Handle successful payment
-          console.log("Payment successful", response);
-          router.push("/thank-you");
-        },
-        prefill: {
-          name: customerDetails.name,
-          email: customerDetails.email,
-          contact: customerDetails.phone,
-        },
-        notes: {
-          booking_date: date?.toISOString(),
-          time_slot: timeSlot,
-        },
-        theme: {
-          color: "#663399",
-        },
+    
+    // Create a unique booking ID
+    const bookingId = `ZILL-${Date.now()}`;
+    
+    // Get the consultation fee from the UI
+    const consultationFee = 1700; // This should match the displayed amount
+    
+    // Store booking details in localStorage
+    const bookingDetails = {
+      id: bookingId,
+      name: customerDetails.name,
+      email: customerDetails.email,
+      phone: customerDetails.phone,
+      date: date ? date.toISOString() : '',
+      timeSlot: timeSlot,
+      sessionType: 'Leadership Consultation',
+      amount: consultationFee,
+      status: 'pending'
+    };
+    
+    localStorage.setItem('zillionite_booking', JSON.stringify(bookingDetails));
+    
+    // Add Instamojo script to the page if it doesn't exist
+    if (!document.getElementById('instamojo-js')) {
+      const script = document.createElement('script');
+      script.id = 'instamojo-js';
+      script.src = 'https://js.instamojo.com/v1/checkout.js';
+      document.body.appendChild(script);
+      
+      script.onload = () => {
+        initInstamojoPayment(bookingId, consultationFee);
       };
-
-      const razorpay = new window.Razorpay(options);
-      razorpay.open();
-      setLoading(false);
-    } catch (error) {
-      console.error("Payment error:", error);
-      setLoading(false);
-      alert("Payment initialization failed. Please try again.");
+    } else {
+      initInstamojoPayment(bookingId, consultationFee);
     }
+  };
+  
+  // Function to initialize Instamojo payment with dynamic amount
+  const initInstamojoPayment = (bookingId: string, amount: number) => {
+    if (typeof window.Instamojo !== 'undefined') {
+      window.Instamojo.configure({
+        handlers: {
+          onOpen: function() {
+            console.log('Payment modal opened');
+          },
+          onClose: function() {
+            console.log('Payment modal closed');
+          },
+          onSuccess: function(response: any) {
+            console.log('Payment successful', response);
+            // Update booking status and redirect
+            const storedBooking = localStorage.getItem('zillionite_booking');
+            if (storedBooking) {
+              const bookingData = JSON.parse(storedBooking);
+              bookingData.status = 'confirmed';
+              bookingData.paymentId = response.paymentId;
+              localStorage.setItem('zillionite_booking', JSON.stringify(bookingData));
+            }
+            router.push(`/thank-you?booking=${bookingId}&payment_id=${response.paymentId}&payment_status=Credit`);
+          },
+          onFailure: function(response: any) {
+            console.log('Payment failed', response);
+            router.push(`/thank-you?booking=${bookingId}`);
+          }
+        }
+      });
+      
+      // Open Instamojo payment with dynamic amount in the URL
+      // You might need to adjust this URL format based on Instamojo's requirements
+      window.Instamojo.open(`https://www.instamojo.com/@zillionite/?amount=${amount}`);
+    } else {
+      console.error('Instamojo not loaded');
+      // Fallback to direct link with amount
+      window.open(`https://www.instamojo.com/@zillionite/?amount=${amount}`, '_blank');
+      router.push(`/thank-you?booking=${bookingId}`);
+    }
+    
+    setLoading(false);
   };
 
   const isWednesdayOrFriday = ({ date }: { date: Date }) => {
@@ -432,6 +455,10 @@ const Booking = () => {
                         </div>
                       </div>
 
+                      // Add this with your other state variables
+                      const [consultationFee, setConsultationFee] = useState(1700);
+                      
+                      // Then update the display in the UI
                       <div className="bg-white rounded-lg border-2 border-purple-200 p-4 mb-8">
                         <div className="flex justify-between items-center">
                           <div>
@@ -441,7 +468,7 @@ const Booking = () => {
                             </p>
                           </div>
                           <p className="text-2xl font-bold text-[#663399]">
-                            ₹1,700
+                            ₹1700
                           </p>
                         </div>
                       </div>
