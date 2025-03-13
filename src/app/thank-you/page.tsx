@@ -154,7 +154,7 @@ export default function ThankYou() {
                 </div>
               </div>
               
-              // In the return statement, add this button for pending payments
+              {/* Payment actions section */}
               <div className="text-center">
                 <p className="text-gray-600 mb-6">
                   {booking.status === 'confirmed' 
@@ -175,7 +175,7 @@ export default function ThankYou() {
                       }}
                       className="px-6 py-3 mb-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
                     >
-                      I've Completed Payment
+                      I&apos;ve Completed Payment
                     </button>
                   </div>
                 )}

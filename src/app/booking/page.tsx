@@ -12,6 +12,12 @@ import Link from "next/link";
 
 export const dynamic = "force-dynamic"; // Ensures Next.js renders this page dynamically
 
+// Define types for Instamojo response
+interface InstamojoResponse {
+  paymentId: string;
+  status: string;
+}
+
 const Booking = () => {
   const isClient = useIsClient();
   const [date, setDate] = useState<Date | null>(null);
@@ -24,6 +30,9 @@ const Booking = () => {
     email: "",
     phone: "",
   });
+
+  // Add consultation fee as state
+  const [consultationFee] = useState(1700);
 
   useEffect(() => {
     if (isClient) {
@@ -76,9 +85,6 @@ const Booking = () => {
     // Create a unique booking ID
     const bookingId = `ZILL-${Date.now()}`;
     
-    // Get the consultation fee from the UI
-    const consultationFee = 1700; // This should match the displayed amount
-    
     // Store booking details in localStorage
     const bookingDetails = {
       id: bookingId,
@@ -120,7 +126,7 @@ const Booking = () => {
           onClose: function() {
             console.log('Payment modal closed');
           },
-          onSuccess: function(response: any) {
+          onSuccess: function(response: InstamojoResponse) {
             console.log('Payment successful', response);
             // Update booking status and redirect
             const storedBooking = localStorage.getItem('zillionite_booking');
@@ -132,7 +138,7 @@ const Booking = () => {
             }
             router.push(`/thank-you?booking=${bookingId}&payment_id=${response.paymentId}&payment_status=Credit`);
           },
-          onFailure: function(response: any) {
+          onFailure: function(response: InstamojoResponse) {
             console.log('Payment failed', response);
             router.push(`/thank-you?booking=${bookingId}`);
           }
@@ -140,7 +146,6 @@ const Booking = () => {
       });
       
       // Open Instamojo payment with dynamic amount in the URL
-      // You might need to adjust this URL format based on Instamojo's requirements
       window.Instamojo.open(`https://www.instamojo.com/@zillionite/?amount=${amount}`);
     } else {
       console.error('Instamojo not loaded');
@@ -263,7 +268,7 @@ const Booking = () => {
                       </li>
                       <li className="flex items-center">
                         <span className="mr-2">💰</span>
-                        <span>₹1,700 INR</span>
+                        <span>₹{consultationFee} INR</span>
                       </li>
                     </ul>
                   </div>
@@ -455,10 +460,8 @@ const Booking = () => {
                         </div>
                       </div>
 
-                      // Add this with your other state variables
-                      const [consultationFee, setConsultationFee] = useState(1700);
+                     
                       
-                      // Then update the display in the UI
                       <div className="bg-white rounded-lg border-2 border-purple-200 p-4 mb-8">
                         <div className="flex justify-between items-center">
                           <div>
