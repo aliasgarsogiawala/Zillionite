@@ -1,13 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-export default function ThankYou() {
-  const [booking, setBooking] = useState<any>(null);
+// Define a proper interface for the booking object
+interface Booking {
+  id: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  date?: string;
+  timeSlot?: string;
+  sessionType: string;
+  amount: number;
+  status: 'pending' | 'confirmed';
+  paymentId?: string;
+}
+
+// Create a client component that uses useSearchParams
+function ThankYouClient() {
+  const [booking, setBooking] = useState<Booking | null>(null);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
   const searchParams = useSearchParams();
   const bookingId = searchParams.get('booking');
   const paymentId = searchParams.get('payment_id');
@@ -66,7 +80,7 @@ export default function ThankYou() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white py-12">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-3xl font-bold text-gray-800 mb-6">No Booking Found</h1>
-          <p className="text-gray-600 mb-8">We couldn't find any booking information.</p>
+          <p className="text-gray-600 mb-8">We couldn&apos;t find any booking information.</p>
           <Link href="/booking" className="px-6 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors">
             Book a Session
           </Link>
@@ -118,25 +132,31 @@ export default function ThankYou() {
                     <span className="text-gray-600">Booking ID:</span>
                     <span className="font-medium">{booking.id}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Name:</span>
-                    <span className="font-medium">{booking.name}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Date:</span>
-                    <span className="font-medium">
-                      {new Date(booking.date).toLocaleDateString("en-US", {
-                        weekday: "long",
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Time:</span>
-                    <span className="font-medium">{booking.timeSlot}</span>
-                  </div>
+                  {booking.name && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Name:</span>
+                      <span className="font-medium">{booking.name}</span>
+                    </div>
+                  )}
+                  {booking.date && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Date:</span>
+                      <span className="font-medium">
+                        {new Date(booking.date).toLocaleDateString("en-US", {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </span>
+                    </div>
+                  )}
+                  {booking.timeSlot && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Time:</span>
+                      <span className="font-medium">{booking.timeSlot}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between">
                     <span className="text-gray-600">Session Type:</span>
                     <span className="font-medium">{booking.sessionType}</span>
@@ -171,7 +191,7 @@ export default function ThankYou() {
                       onClick={() => {
                         const updatedBooking = {...booking, status: 'confirmed'};
                         localStorage.setItem('zillionite_booking', JSON.stringify(updatedBooking));
-                        setBooking(updatedBooking);
+                        setBooking(updatedBooking as Booking);
                       }}
                       className="px-6 py-3 mb-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
                     >
@@ -189,5 +209,18 @@ export default function ThankYou() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Main component with Suspense boundary
+export default function ThankYou() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+      </div>
+    }>
+      <ThankYouClient />
+    </Suspense>
   );
 }

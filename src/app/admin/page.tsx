@@ -1,16 +1,28 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+
+// Define a proper type for bookings
+interface Booking {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  date: string;
+  timeSlot: string;
+  sessionType: string;
+  amount: number;
+  status: 'pending' | 'confirmed';
+  paymentId?: string;
+}
 
 export default function AdminPanel() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [bookings, setBookings] = useState<any[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
   const [error, setError] = useState("");
-  const router = useRouter();
 
   // Check if user is already logged in
   useEffect(() => {
@@ -53,7 +65,7 @@ export default function AdminPanel() {
     setBookings(allBookings);
   };
 
-  const updateBookingStatus = (bookingId: string, status: string) => {
+  const updateBookingStatus = (bookingId: string, status: 'pending' | 'confirmed') => {
     const updatedBookings = bookings.map(booking => {
       if (booking.id === bookingId) {
         booking.status = status;
