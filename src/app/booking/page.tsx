@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useIsClient } from "../utils/client";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic"; // Ensures Next.js renders this page dynamically
 
@@ -45,8 +44,7 @@ const Booking = () => {
     "12:30 PM",
     "1:00 PM",
     "1:30 PM",
-    "2:00 PM",
-    "2:30 PM",
+    
   ];
 
   const handleDateChange = (selectedDate: Date | Date[]) => {
@@ -115,7 +113,6 @@ const Booking = () => {
     }
   };
   
-  // Function to initialize Instamojo payment with dynamic amount
   const initInstamojoPayment = (bookingId: string, amount: number) => {
     if (typeof window.Instamojo !== 'undefined') {
       window.Instamojo.configure({
@@ -264,7 +261,7 @@ const Booking = () => {
                       </li>
                       <li className="flex items-center">
                         <span className="mr-2">🌐</span>
-                        <span>Online via Zoom</span>
+                        <span>Online via Google Meet</span>
                       </li>
                       <li className="flex items-center">
                         <span className="mr-2">💰</span>
