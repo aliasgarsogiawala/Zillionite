@@ -217,24 +217,19 @@ export default function Home() {
                 zIndex = 1;
               }
 
-              // Adjust scale and offset for mobile
-              const mobileAdjustments = {
-                scale: window.innerWidth < 640 ? scale * 0.7 : scale,
-                xOffset: window.innerWidth < 640 ? xOffset * 0.6 : xOffset
-              };
-
+              // For mobile, we'll use CSS media queries instead of window.innerWidth
               return (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ 
                     opacity, 
-                    scale: typeof window !== 'undefined' ? mobileAdjustments.scale : scale, 
-                    x: typeof window !== 'undefined' ? mobileAdjustments.xOffset : xOffset, 
+                    scale, 
+                    x: xOffset, 
                     zIndex 
                   }}
                   transition={{ duration: 0.5 }}
-                  className="absolute"
+                  className="absolute sm:scale-100 xs:scale-75" // Use CSS for mobile scaling
                 >
                   <div className="bg-gradient-to-br from-purple-50 to-white rounded-xl shadow-xl p-2 sm:p-4 border-2 border-purple-100">
                     <Image
