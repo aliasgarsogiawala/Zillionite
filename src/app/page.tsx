@@ -193,8 +193,8 @@ export default function Home() {
         <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#663399] to-purple-500 mb-8">
           Client Diaries
         </h2>
-        <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center justify-center">
-          <div className="relative flex items-center justify-center w-full h-[250px] sm:h-[350px] md:h-[500px] overflow-visible">
+        <div className="relative w-full max-w-5xl mx-auto mt-6 flex items-center justify-center">
+          <div className="relative flex items-center justify-center w-full h-[280px] sm:h-[400px] md:h-[550px] overflow-visible">
             {testimonials.map((testimonial, index) => {
               const position = (index - currentTestimonial + testimonials.length) % testimonials.length;
               let scale = 1;
@@ -202,22 +202,36 @@ export default function Home() {
               let xOffset = 0;
               let zIndex = 1;
 
-              if (position === 0) {
-                scale = 1.2;
-                opacity = 1;
-                xOffset = 0;
-                zIndex = 10;
-              } else if (position === 1 || position === testimonials.length - 1) {
-                scale = 0.8;
-                opacity = 0.6;
-                xOffset = position === 1 ? -100 : 100; // Reduced offset for mobile
-                zIndex = 5;
+              // Different behavior for mobile vs desktop
+              if (typeof window !== 'undefined' && window.innerWidth < 640) {
+                // Mobile: Only show current testimonial
+                if (position === 0) {
+                  scale = 1;
+                  opacity = 1;
+                  xOffset = 0;
+                  zIndex = 10;
+                } else {
+                  opacity = 0;
+                  zIndex = 1;
+                }
               } else {
-                opacity = 0;
-                zIndex = 1;
+                // Desktop: Show carousel with side testimonials
+                if (position === 0) {
+                  scale = 1.4; // Bigger on desktop
+                  opacity = 1;
+                  xOffset = 0;
+                  zIndex = 10;
+                } else if (position === 1 || position === testimonials.length - 1) {
+                  scale = 0.9;
+                  opacity = 0.6;
+                  xOffset = position === 1 ? -120 : 120;
+                  zIndex = 5;
+                } else {
+                  opacity = 0;
+                  zIndex = 1;
+                }
               }
 
-              // For mobile, we'll use CSS media queries instead of window.innerWidth
               return (
                 <motion.div
                   key={index}
@@ -229,7 +243,7 @@ export default function Home() {
                     zIndex 
                   }}
                   transition={{ duration: 0.5 }}
-                  className="absolute sm:scale-100 xs:scale-75" // Use CSS for mobile scaling
+                  className="absolute"
                 >
                   <div className="bg-gradient-to-br from-purple-50 to-white rounded-xl shadow-xl p-2 sm:p-4 border-2 border-purple-100">
                     <Image
@@ -237,7 +251,7 @@ export default function Home() {
                       alt="Testimonial"
                       width={300}
                       height={400}
-                      className="rounded-lg w-[150px] sm:w-[200px] md:w-[300px] h-auto mx-auto"
+                      className="rounded-lg w-[220px] sm:w-[250px] md:w-[350px] h-auto mx-auto"
                     />
                   </div>
                 </motion.div>
@@ -246,19 +260,7 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Mobile navigation dots */}
-        <div className="flex justify-center mt-4 sm:mt-6 gap-2">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentTestimonial(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                currentTestimonial === index ? "bg-[#663399] w-4" : "bg-gray-300"
-              }`}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
-        </div>
+        {/* Removed navigation arrows and dots */}
       </div>
     </div>
   );
