@@ -194,7 +194,7 @@ export default function Home() {
           Client Diaries
         </h2>
         <div className="relative w-full max-w-4xl mx-auto mt-6 flex items-center justify-center">
-          <div className="relative flex items-center justify-center w-full h-[300px] sm:h-[350px] md:h-[500px] overflow-visible">
+          <div className="relative flex items-center justify-center w-full h-[250px] sm:h-[350px] md:h-[500px] overflow-visible">
             {testimonials.map((testimonial, index) => {
               const position = (index - currentTestimonial + testimonials.length) % testimonials.length;
               let scale = 1;
@@ -208,36 +208,61 @@ export default function Home() {
                 xOffset = 0;
                 zIndex = 10;
               } else if (position === 1 || position === testimonials.length - 1) {
-                scale = 1;
+                scale = 0.8;
                 opacity = 0.6;
-                xOffset = position === 1 ? -150 : 150;
+                xOffset = position === 1 ? -100 : 100; // Reduced offset for mobile
                 zIndex = 5;
               } else {
                 opacity = 0;
                 zIndex = 1;
               }
 
+              // Adjust scale and offset for mobile
+              const mobileAdjustments = {
+                scale: window.innerWidth < 640 ? scale * 0.7 : scale,
+                xOffset: window.innerWidth < 640 ? xOffset * 0.6 : xOffset
+              };
+
               return (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity, scale, x: xOffset, zIndex }}
+                  animate={{ 
+                    opacity, 
+                    scale: typeof window !== 'undefined' ? mobileAdjustments.scale : scale, 
+                    x: typeof window !== 'undefined' ? mobileAdjustments.xOffset : xOffset, 
+                    zIndex 
+                  }}
                   transition={{ duration: 0.5 }}
                   className="absolute"
                 >
-                  <div className="bg-gradient-to-br from-purple-50 to-white rounded-xl shadow-xl p-4 border-2 border-purple-100">
+                  <div className="bg-gradient-to-br from-purple-50 to-white rounded-xl shadow-xl p-2 sm:p-4 border-2 border-purple-100">
                     <Image
                       src={testimonial.image}
                       alt="Testimonial"
                       width={300}
                       height={400}
-                      className="rounded-lg w-[200px] sm:w-[300px] h-auto mx-auto"
+                      className="rounded-lg w-[150px] sm:w-[200px] md:w-[300px] h-auto mx-auto"
                     />
                   </div>
                 </motion.div>
               );
             })}
           </div>
+        </div>
+        
+        {/* Mobile navigation dots */}
+        <div className="flex justify-center mt-4 sm:mt-6 gap-2">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentTestimonial(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                currentTestimonial === index ? "bg-[#663399] w-4" : "bg-gray-300"
+              }`}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>

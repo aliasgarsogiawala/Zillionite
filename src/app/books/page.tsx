@@ -67,14 +67,14 @@ export default function Books() {
                     <CardContainer className="w-full">
                       <CardBody className="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 border-2 border-purple-100 p-0">
                         <div className="flex flex-col md:flex-row">
-                          <div className="w-full md:w-1/2 relative min-h-[300px] bg-gradient-to-br from-purple-50 to-white">
-                            <CardItem translateZ="50" className="w-full h-full relative">
+                          <div className="w-full md:w-1/2 relative min-h-[300px] bg-gradient-to-br from-purple-50 to-white flex items-center justify-center">
+                            <CardItem translateZ="50" className="w-full h-full flex items-center justify-center">
                               <Image
                                 src={book.image}
                                 alt={book.title}
-                                width={300}
-                                height={300}
-                                className="object-contain p-6"
+                                width={200}
+                                height={280}
+                                className="max-h-[280px] w-auto object-contain"
                                 priority
                               />
                             </CardItem>
