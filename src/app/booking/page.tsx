@@ -143,11 +143,11 @@ const Booking = () => {
       });
       
       // Open Instamojo payment with dynamic amount in the URL
-      window.Instamojo.open(`https://www.instamojo.com/@zillionite/?amount=${amount}`);
+      window.Instamojo.open(`${process.env.NEXT_PUBLIC_INSTAMOJO_URL}?amount=${amount}`);
     } else {
       console.error('Instamojo not loaded');
       // Fallback to direct link with amount
-      window.open(`https://www.instamojo.com/@zillionite/?amount=${amount}`, '_blank');
+      window.open(`${process.env.NEXT_PUBLIC_INSTAMOJO_URL}?amount=${amount}`, '_blank');
       router.push(`/thank-you?booking=${bookingId}`);
     }
     
